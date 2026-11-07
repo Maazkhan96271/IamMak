@@ -2,11 +2,23 @@ import React from "react";
 import Link from "next/link";
 import { portfolioData } from "@/data/portfolioData";
 import { IDCard3D } from "@/components/IDCard3D";
+import { LocationMapCard } from "@/components/LocationMapCard";
+import { AcademicDashboardCard } from "@/components/AcademicDashboardCard";
+import { ValuesBentoRow } from "@/components/ValuesBentoRow";
 import { ProjectBentoCard } from "@/components/ProjectBentoCard";
-import { ExternalLink, Github, Sparkles } from "lucide-react";
+import { ExternalLink, Github, Sparkles, UserCheck } from "lucide-react";
 
 export default function Home() {
-  const { persona, stats, projects, credentials, forge } = portfolioData;
+  const {
+    persona,
+    stats,
+    mapData,
+    academicTrend,
+    values,
+    projects,
+    credentials,
+    forge,
+  } = portfolioData;
 
   return (
     <main className="relative min-h-screen px-6 py-8 md:py-16 max-w-7xl mx-auto space-y-28">
@@ -83,27 +95,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ 2. Telemetry Stats Bar ═══ */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
-        <div className="glass-card p-6 flex flex-col justify-between">
-          <span className="font-mono text-xs text-cyan-400">Deployed Code</span>
-          <div className="text-3xl sm:text-4xl font-display font-extrabold text-white mt-2">{stats.apps}</div>
-          <span className="text-xs text-slate-400 mt-1">Production Applications</span>
+      {/* ═══ 2. "Who I Am" Bento Section (`#about`) ═══ */}
+      <section id="about" className="space-y-8 scroll-mt-24">
+        <div className="space-y-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 font-mono text-xs font-semibold">
+            <Sparkles size={12} />
+            <span>WHO I AM · IDENTITY &amp; CORE TELEMETRY</span>
+          </div>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+            The Blueprint &amp; Academic Radar
+          </h2>
+          <p className="text-slate-400 text-sm sm:text-base max-w-2xl font-sans">
+            Undergraduate systems engineer building at the intersection of Applied AI, modern frontend architectures, and high-performance backends in Bengaluru.
+          </p>
         </div>
-        <div className="glass-card p-6 flex flex-col justify-between">
-          <span className="font-mono text-xs text-emerald-400">C++20 Drills</span>
-          <div className="text-3xl sm:text-4xl font-display font-extrabold text-white mt-2">{stats.dsa}</div>
-          <span className="text-xs text-slate-400 mt-1">Algorithmic Problems</span>
+
+        {/* Bento Top Row: Location Map Card + Academic Trend Card */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <LocationMapCard mapData={mapData} />
+          <AcademicDashboardCard data={academicTrend} />
         </div>
-        <div className="glass-card p-6 flex flex-col justify-between">
-          <span className="font-mono text-xs text-purple-400">PST Admission</span>
-          <div className="text-3xl sm:text-4xl font-display font-extrabold text-white mt-2">{stats.admission}</div>
-          <span className="text-xs text-slate-400 mt-1">Applied AI Undergrad</span>
-        </div>
-        <div className="glass-card p-6 flex flex-col justify-between">
-          <span className="font-mono text-xs text-blue-400">Lighthouse</span>
-          <div className="text-3xl sm:text-4xl font-display font-extrabold text-white mt-2">{stats.performance}</div>
-          <span className="text-xs text-slate-400 mt-1">Architecture Standard</span>
+
+        {/* Bento Bottom Row: 3 Values Bento Boxes (Growth, Focus, Craft) */}
+        <div className="space-y-3 pt-2">
+          <div className="flex items-center justify-between px-1">
+            <span className="font-mono text-xs uppercase tracking-widest text-slate-400 font-semibold">
+              Core Operating Values
+            </span>
+            <span className="font-mono text-[11px] text-cyan-400">
+              3 Disciplines
+            </span>
+          </div>
+          <ValuesBentoRow values={values} />
         </div>
       </section>
 

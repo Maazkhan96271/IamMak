@@ -39,6 +39,38 @@ export interface ForgeItem {
   level: string;
 }
 
+export interface MapData {
+  city: string;
+  country: string;
+  coordinates: string;
+  timezone: string;
+  overlayText: string;
+}
+
+export interface AcademicMetric {
+  stat: string;
+  label: string;
+  description: string;
+  badge: string;
+  accent: string;
+}
+
+export interface AcademicTrendData {
+  title: string;
+  subtitle: string;
+  target: string;
+  institution: string;
+  metrics: AcademicMetric[];
+}
+
+export interface ValueItem {
+  id: string;
+  title: string;
+  tagline: string;
+  badge: string;
+  accent: "cyan" | "emerald" | "purple";
+}
+
 export interface PersonaData {
   name: string;
   tagline: string;
@@ -69,6 +101,9 @@ export interface PortfolioData {
     admission: string;
     performance: string;
   };
+  mapData: MapData;
+  academicTrend: AcademicTrendData;
+  values: ValueItem[];
   projects: ProjectItem[];
   archivedProjects?: ProjectItem[];
   credentials: CredentialItem[];
@@ -110,6 +145,75 @@ export const portfolioData: PortfolioData = {
     admission: "2026",
     performance: "100/100",
   },
+
+  mapData: {
+    city: "Bengaluru",
+    country: "India",
+    coordinates: "12.9716° N, 77.5946° E",
+    timezone: "GMT+5:30",
+    overlayText: "BENGALURU, INDIA · 12.9716° N, 77.5946° E · GMT+5:30",
+  },
+
+  academicTrend: {
+    title: "Academic Trend & Stats",
+    subtitle: "Real-time engineering metrics & milestone velocity",
+    target: "Target: SWE 2030",
+    institution: "Polaris School of Technology",
+    metrics: [
+      {
+        stat: "5+",
+        label: "Apps Built",
+        description: "Full-Stack & Applied AI Deployments",
+        badge: "Production Ready",
+        accent: "text-cyan-400",
+      },
+      {
+        stat: "200+",
+        label: "DSA Solved",
+        description: "C++20 & Algorithmic Problem Solving",
+        badge: "Daily Practice",
+        accent: "text-emerald-400",
+      },
+      {
+        stat: "SWE 2030",
+        label: "Target Milestone",
+        description: "Software Engineer by 2030",
+        badge: "Target: SWE 2030",
+        accent: "text-purple-400",
+      },
+      {
+        stat: "PST Undergrad",
+        label: "Polaris School of Technology",
+        description: "B.Tech in Applied AI (2026 Batch)",
+        badge: "Bengaluru, IN",
+        accent: "text-blue-400",
+      },
+    ],
+  },
+
+  values: [
+    {
+      id: "growth",
+      title: "Growth",
+      tagline: "An explorer of systems, driven by curiosity.",
+      badge: "Curiosity Engine",
+      accent: "cyan",
+    },
+    {
+      id: "focus",
+      title: "Focus",
+      tagline: "Deep work on efficiency and AI workflows.",
+      badge: "Deep Work Mode",
+      accent: "emerald",
+    },
+    {
+      id: "craft",
+      title: "Craft",
+      tagline: "Discipline in every single line of code.",
+      badge: "Production Discipline",
+      accent: "purple",
+    },
+  ],
 
   projects: [
     {
