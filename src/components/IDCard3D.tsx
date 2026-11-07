@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Sparkles, RotateCw, MapPin, GraduationCap, Code, Cpu, QrCode } from "lucide-react";
+import { soundFx } from "@/lib/sound";
 
 interface IDCard3DProps {
   name: string;
@@ -34,6 +35,7 @@ export function IDCard3D({ name, avatarUrl }: IDCard3DProps) {
   };
 
   const toggleFlip = () => {
+    soundFx.playPop();
     setIsFlipped((prev) => !prev);
     setRotateX(0);
     setRotateY(0);
@@ -41,7 +43,7 @@ export function IDCard3D({ name, avatarUrl }: IDCard3DProps) {
 
   return (
     <div
-      className="relative w-full max-w-[340px] sm:max-w-[360px] h-[500px] cursor-pointer [perspective:1200px]"
+      className="relative w-full max-w-[340px] sm:max-w-[360px] h-[520px] cursor-pointer [perspective:1200px]"
       onClick={toggleFlip}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -60,145 +62,183 @@ export function IDCard3D({ name, avatarUrl }: IDCard3DProps) {
       >
         {/* ═══ FRONT OF CARD ═══ */}
         <div
-          className="absolute inset-0 w-full h-full rounded-2xl border border-cyan-400/30 bg-[#090d16]/90 p-6 flex flex-col justify-between shadow-[0_20px_60px_-15px_rgba(0,240,255,0.25)] backdrop-blur-2xl [backface-visibility:hidden] overflow-hidden"
+          className="absolute inset-0 w-full h-full rounded-2xl border border-cyan-400/30 bg-[#090d16]/95 p-6 flex flex-col justify-between shadow-[0_20px_60px_-15px_rgba(0,240,255,0.25)] backdrop-blur-2xl [backface-visibility:hidden] overflow-hidden"
         >
           {/* Subtle Cyber Grid & Ambient Glow */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,240,255,0.15),transparent_60%)] pointer-events-none" />
           <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
 
+          {/* ─── 4 Cyber Corner Brackets from ayushcmd.me ─── */}
+          <div className="absolute top-2.5 left-2.5 w-4 h-4 border-t-2 border-l-2 border-cyan-400/50 z-20 pointer-events-none" />
+          <div className="absolute top-2.5 right-2.5 w-4 h-4 border-t-2 border-r-2 border-cyan-400/50 z-20 pointer-events-none" />
+          <div className="absolute bottom-2.5 left-2.5 w-4 h-4 border-b-2 border-l-2 border-cyan-400/50 z-20 pointer-events-none" />
+          <div className="absolute bottom-2.5 right-2.5 w-4 h-4 border-b-2 border-r-2 border-cyan-400/50 z-20 pointer-events-none" />
+
+          {/* ─── Animated Vertical Laser Scan Line ─── */}
+          <div className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent z-10 pointer-events-none animate-[pulse-slow_2s_infinite]" />
+
           {/* Top Lanyard Slot & Holographic Header */}
           <div className="relative z-10 flex flex-col items-center">
-            {/* Lanyard Hole Clip */}
-            <div className="w-12 h-2.5 rounded-full bg-[#050505] border border-white/20 mb-3 shadow-inner" />
+            {/* Lanyard Hole */}
+            <div className="h-2 w-14 rounded-full bg-black/80 border border-white/20 mb-3 shadow-inner" />
 
-            <div className="w-full flex items-center justify-between text-[11px] font-mono text-slate-400 border-b border-white/10 pb-2">
-              <span className="flex items-center gap-1.5 text-cyan-400">
-                <Cpu size={13} />
-                <span>PST // 2026</span>
+            {/* Header Telemetry */}
+            <div className="w-full flex items-center justify-between text-[11px] font-mono tracking-widest text-cyan-400 border-b border-white/10 pb-2">
+              <span className="flex items-center gap-1.5 font-semibold">
+                <span className="h-2 w-2 rounded-full bg-cyan-400 animate-ping inline-block" />
+                POLARIS PST // 2026
               </span>
-              <span className="tracking-widest uppercase text-slate-400">ACCESS ID</span>
+              <span className="text-[10px] text-slate-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+                <RotateCw size={10} className="animate-spin-slow" />
+                TAP TO FLIP
+              </span>
             </div>
           </div>
 
-          {/* Photo Container */}
-          <div className="relative z-10 flex flex-col items-center my-auto">
-            <div className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-full p-1 border-2 border-cyan-400/50 shadow-[0_0_25px_rgba(0,240,255,0.3)] bg-gradient-to-b from-cyan-400/20 to-transparent">
-              <div className="relative w-full h-full rounded-full overflow-hidden bg-[#050505]">
+          {/* Center Identity Section */}
+          <div className="relative z-10 flex flex-col items-center text-center my-auto space-y-4">
+            {/* Avatar Photo Frame with Holographic Glow */}
+            <div className="relative group">
+              <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-cyan-400 via-emerald-400 to-purple-500 opacity-60 blur-md group-hover:opacity-100 transition-opacity" />
+              <div className="relative h-28 w-28 sm:h-32 sm:w-32 rounded-full border-2 border-cyan-300 p-1 bg-black overflow-hidden shadow-2xl">
                 <Image
                   src={avatarUrl}
-                  alt={`${name} Photo`}
-                  fill
+                  alt={name}
+                  width={128}
+                  height={128}
+                  className="h-full w-full object-cover rounded-full"
                   priority
-                  className="object-cover object-top"
-                  sizes="160px"
                 />
               </div>
-              <div className="absolute bottom-1 right-2 w-4 h-4 rounded-full bg-emerald-400 border-2 border-[#090d16] shadow-[0_0_10px_#10b981]" />
+              <span className="absolute bottom-1 right-2 h-4 w-4 rounded-full bg-emerald-500 border-2 border-black" title="Active in Bengaluru" />
             </div>
 
-            {/* Name */}
-            <h3 className="font-display text-2xl font-extrabold text-white tracking-tight mt-4">
-              {name}
-            </h3>
+            {/* Name & Title */}
+            <div className="space-y-1">
+              <h3 className="font-comfortaa text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                {name}
+              </h3>
+              <p className="font-mono text-xs text-cyan-300 tracking-wider">
+                Applied AI Student
+              </p>
+            </div>
 
-            {/* Applied AI Student Tag */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-cyan-400/40 bg-cyan-400/10 text-cyan-300 font-mono text-xs font-semibold mt-2 shadow-[0_0_12px_rgba(0,240,255,0.15)]">
-              <Sparkles size={11} />
-              <span>Applied AI Student</span>
+            {/* Micro Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 font-mono text-[11px]">
+              <Cpu size={12} />
+              <span>Full-Stack &amp; AI Systems</span>
             </div>
           </div>
 
-          {/* Bottom Flip Indicator */}
-          <div className="relative z-10 flex items-center justify-between pt-3 border-t border-white/10 text-slate-400">
-            <span className="font-mono text-[10px] tracking-wider uppercase text-slate-500">
-              SECURE BIO ID
-            </span>
-            <div className="flex items-center gap-1.5 font-mono text-xs text-cyan-400 animate-pulse">
-              <span>TAP TO FLIP</span>
-              <RotateCw size={12} />
+          {/* Bottom Telemetry & Chips */}
+          <div className="relative z-10 border-t border-white/10 pt-3 space-y-2">
+            <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+              <span className="flex items-center gap-1 text-slate-300">
+                <MapPin size={12} className="text-cyan-400" />
+                Bengaluru, IN
+              </span>
+              <span className="text-emerald-400 font-semibold font-mono">
+                Class of 2026–2030
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between pt-1">
+              <div className="text-[10px] font-mono text-slate-400">
+                SECURITY CHIP: <span className="text-cyan-300 font-semibold">AES-256</span>
+              </div>
+              <div className="flex items-center gap-1 font-mono text-[10px] text-cyan-400">
+                <span>VERIFIED</span>
+                <Sparkles size={11} />
+              </div>
             </div>
           </div>
         </div>
 
         {/* ═══ BACK OF CARD ═══ */}
         <div
-          className="absolute inset-0 w-full h-full rounded-2xl border border-emerald-500/30 bg-[#090e18]/95 p-6 flex flex-col justify-between shadow-[0_20px_60px_-15px_rgba(16,185,129,0.25)] backdrop-blur-2xl [transform:rotateY(180deg)] [backface-visibility:hidden] overflow-hidden"
+          className="absolute inset-0 w-full h-full rounded-2xl border border-purple-400/40 bg-[#090a14]/95 p-6 flex flex-col justify-between shadow-[0_20px_60px_-15px_rgba(168,85,247,0.3)] backdrop-blur-2xl [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden"
         >
-          {/* Subtle Ambient Glow */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(16,185,129,0.15),transparent_60%)] pointer-events-none" />
+          {/* Ambient Glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(168,85,247,0.2),transparent_60%)] pointer-events-none" />
 
-          {/* Top Lanyard Slot & Header */}
+          {/* 4 Cyber Corner Brackets */}
+          <div className="absolute top-2.5 left-2.5 w-4 h-4 border-t-2 border-l-2 border-purple-400/50 z-20 pointer-events-none" />
+          <div className="absolute top-2.5 right-2.5 w-4 h-4 border-t-2 border-r-2 border-purple-400/50 z-20 pointer-events-none" />
+          <div className="absolute bottom-2.5 left-2.5 w-4 h-4 border-b-2 border-l-2 border-purple-400/50 z-20 pointer-events-none" />
+          <div className="absolute bottom-2.5 right-2.5 w-4 h-4 border-b-2 border-r-2 border-purple-400/50 z-20 pointer-events-none" />
+
+          {/* Top Header */}
           <div className="relative z-10 flex flex-col items-center">
-            <div className="w-12 h-2.5 rounded-full bg-[#050505] border border-white/20 mb-3 shadow-inner" />
-            <div className="w-full flex items-center justify-between text-[11px] font-mono text-slate-400 border-b border-white/10 pb-2">
-              <span className="text-emerald-400 font-semibold flex items-center gap-1.5">
-                <GraduationCap size={14} />
-                <span>POLARIS ID MATRIX</span>
+            {/* Lanyard Hole */}
+            <div className="h-2 w-14 rounded-full bg-black/80 border border-white/20 mb-3 shadow-inner" />
+
+            <div className="w-full flex items-center justify-between text-[11px] font-mono tracking-widest text-purple-300 border-b border-white/10 pb-2">
+              <span className="font-semibold">ACADEMIC PASSPORT</span>
+              <span className="text-[10px] text-slate-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full">
+                TAP TO RETURN
               </span>
-              <span className="font-mono text-[10px] text-slate-500">CLASS 2026-30</span>
             </div>
           </div>
 
-          {/* Back Content */}
+          {/* Middle Body */}
           <div className="relative z-10 space-y-4 my-auto">
-            {/* Institution */}
-            <div className="space-y-1">
-              <span className="text-[10px] font-mono uppercase text-slate-400 tracking-wider">
-                Institution
-              </span>
-              <div className="font-display text-lg font-bold text-white flex items-center gap-2">
-                <span>Polaris School of Technology</span>
+            {/* College & Degree */}
+            <div className="rounded-xl border border-white/10 bg-black/50 p-3.5 space-y-1">
+              <div className="flex items-center gap-2 text-purple-400 font-mono text-xs">
+                <GraduationCap size={15} />
+                <span className="font-bold">Polaris School of Technology</span>
+              </div>
+              <p className="text-white font-comfortaa font-bold text-sm">
+                B.Tech in Applied Artificial Intelligence
+              </p>
+              <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-1 border-t border-white/10 mt-1">
+                <span>Admitted: <strong className="text-white">2026 Batch</strong></span>
+                <span className="text-purple-300 font-semibold">Bengaluru, IN</span>
               </div>
             </div>
 
-            {/* Batch & Location Grid */}
-            <div className="grid grid-cols-2 gap-3 pt-1">
-              <div className="p-2.5 rounded-lg border border-white/10 bg-white/5 space-y-0.5">
-                <span className="text-[10px] font-mono text-slate-400 uppercase">Batch</span>
-                <div className="font-display font-bold text-emerald-400 text-sm">2026 Batch</div>
-              </div>
-              <div className="p-2.5 rounded-lg border border-white/10 bg-white/5 space-y-0.5">
-                <span className="text-[10px] font-mono text-slate-400 uppercase">Location</span>
-                <div className="font-display font-bold text-slate-200 text-sm flex items-center gap-1">
-                  <MapPin size={12} className="text-cyan-400" />
-                  <span>Bengaluru, IN</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Tech Tags */}
-            <div className="space-y-2 pt-2">
-              <span className="text-[10px] font-mono uppercase text-slate-400 tracking-wider">
-                Core Competency &amp; Status
+            {/* Core Tech Tags */}
+            <div className="space-y-2">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block">
+                Primary Core Stack
               </span>
               <div className="flex flex-wrap gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-cyan-400/30 bg-cyan-500/10 text-cyan-300 font-mono text-xs font-semibold">
-                  <Code size={12} />
-                  <span>Next.js · Python</span>
+                <span className="px-3 py-1 rounded-full border border-purple-400/40 bg-purple-500/10 font-mono text-xs text-purple-200">
+                  Next.js 16 · Python
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-emerald-400/30 bg-emerald-500/10 text-emerald-300 font-mono text-xs font-semibold">
-                  <span>▲ 0 → 1 BUILDER</span>
+                <span className="px-3 py-1 rounded-full border border-cyan-400/40 bg-cyan-500/10 font-mono text-xs text-cyan-200">
+                  ▲ 0 → 1 BUILDER
+                </span>
+                <span className="px-3 py-1 rounded-full border border-emerald-400/40 bg-emerald-500/10 font-mono text-xs text-emerald-200">
+                  C++20 DSA
                 </span>
               </div>
             </div>
 
-            {/* Simulated Barcode / Verification */}
-            <div className="pt-2 flex items-center justify-between border-t border-white/10">
-              <div className="font-mono text-[10px] text-slate-400 tracking-widest">
-                AUTH // PST-AI-2026-MK
+            {/* Target Milestone */}
+            <div className="rounded-xl border border-white/10 bg-black/50 p-3 flex items-center justify-between">
+              <div>
+                <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
+                  Career Horizon
+                </span>
+                <span className="text-xs font-mono font-bold text-white">
+                  Software Engineer by 2030
+                </span>
               </div>
-              <QrCode size={20} className="text-slate-400" />
+              <span className="font-mono text-xs px-2.5 py-1 rounded bg-purple-500/20 text-purple-300 font-bold">
+                SWE 2030
+              </span>
             </div>
           </div>
 
-          {/* Bottom Flip Indicator */}
-          <div className="relative z-10 flex items-center justify-between pt-3 border-t border-white/10 text-slate-400">
-            <span className="font-mono text-[10px] tracking-wider uppercase text-slate-500">
-              ACTIVE BADGE
-            </span>
-            <div className="flex items-center gap-1.5 font-mono text-xs text-emerald-400 animate-pulse">
-              <span>TAP TO FLIP BACK</span>
-              <RotateCw size={12} />
+          {/* Bottom Barcode / QR Simulation */}
+          <div className="relative z-10 border-t border-white/10 pt-3 flex items-center justify-between">
+            <div className="space-y-0.5 font-mono text-[9px] text-slate-400">
+              <div>ID: MAAZ-PST-AI-2026</div>
+              <div>AUTH: VERIFIED DIGITAL IDENTITY</div>
+            </div>
+            <div className="p-1 rounded bg-white/10 border border-white/20 text-slate-300">
+              <QrCode size={26} />
             </div>
           </div>
         </div>

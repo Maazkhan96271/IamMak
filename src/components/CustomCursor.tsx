@@ -7,20 +7,28 @@ export function CustomCursor() {
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
+  const rawX = useMotionValue(-100);
+  const rawY = useMotionValue(-100);
 
-  const springConfig = { damping: 28, stiffness: 450, mass: 0.5 };
-  const smoothX = useSpring(cursorX, springConfig);
-  const smoothY = useSpring(cursorY, springConfig);
+  // Fast tight spring for center dot
+  const dotX = useSpring(rawX, { damping: 30, stiffness: 600, mass: 0.2 });
+  const dotY = useSpring(rawY, { damping: 30, stiffness: 600, mass: 0.2 });
+
+  // Smooth floating spring for glass circle (40px)
+  const ringX = useSpring(rawX, { damping: 25, stiffness: 350, mass: 0.5 });
+  const ringY = useSpring(rawY, { damping: 25, stiffness: 350, mass: 0.5 });
+
+  // Soft atmospheric lag for large ambient glow (100px)
+  const glowX = useSpring(rawX, { damping: 22, stiffness: 200, mass: 0.8 });
+  const glowY = useSpring(rawY, { damping: 22, stiffness: 200, mass: 0.8 });
 
   useEffect(() => {
-    // Check if device has pointer (mouse)
+    // Disable on coarse touch devices
     if (window.matchMedia("(pointer: coarse)").matches) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
+      rawX.set(e.clientX);
+      rawY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
     };
 
@@ -32,7 +40,9 @@ export function CustomCursor() {
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      const isClickable = target.closest("a, button, [role='button'], input, textarea, select, [data-clickable='true']");
+      const isClickable = target.closest(
+        "a, button, [role='button'], input, textarea, select, [data-clickable='true'], summary"
+      );
       setIsHovered(!!isClickable);
     };
 
@@ -45,47 +55,66 @@ export function CustomCursor() {
       window.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseover", handleElementHover);
     };
-  }, [cursorX, cursorY, isVisible]);
+  }, [isVisible, rawX, rawY]);
 
   if (!isVisible) return null;
 
   return (
-    <>
-      {/* Primary Inner Dot */}
+    <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden select-none">
+      {/* ─── Layer 1: Ambient 100px Cyan Radial Glow ─── */}
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[999] rounded-full bg-cyan-400 mix-blend-screen"
         style={{
-          x: smoothX,
-          y: smoothY,
+          x: glowX,
+          y: glowY,
           translateX: "-50%",
           translateY: "-50%",
         }}
         animate={{
-          width: isHovered ? 36 : 8,
-          height: isHovered ? 36 : 8,
-          backgroundColor: isHovered ? "rgba(0, 240, 255, 0.35)" : "#00f0ff",
-          boxShadow: isHovered ? "0 0 20px rgba(0, 240, 255, 0.6)" : "0 0 8px rgba(0, 240, 255, 0.8)",
+          scale: isHovered ? 1.4 : 1,
+          opacity: isHovered ? 0.9 : 0.6,
         }}
-        transition={{ type: "spring", damping: 20, stiffness: 350 }}
-      />
+        transition={{ duration: 0.2 }}
+        className="fixed top-0 left-0 h-[100px] w-[100px] rounded-full pointer-events-none -z-10"
+        css-glow=""
+      >
+        <div className="h-full w-full rounded-full bg-[radial-gradient(circle,rgba(0,217,255,0.12)_0%,transparent_65%)] blur-[4px]" />
+      </motion.div>
 
-      {/* Trailing Outer Ring */}
+      {/* ─── Layer 2: 40px Frosted Glass Floating Ring with Highlight ─── */}
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[998] rounded-full border border-cyan-400/40"
         style={{
-          x: smoothX,
-          y: smoothY,
+          x: ringX,
+          y: ringY,
           translateX: "-50%",
           translateY: "-50%",
         }}
         animate={{
-          width: isHovered ? 48 : 24,
-          height: isHovered ? 48 : 24,
-          borderColor: isHovered ? "rgba(0, 240, 255, 0.8)" : "rgba(0, 240, 255, 0.25)",
-          scale: isHovered ? 1.15 : 1,
+          scale: isHovered ? 1.35 : 1,
+          borderColor: isHovered ? "rgba(0, 217, 255, 0.45)" : "rgba(255, 255, 255, 0.16)",
+          backgroundColor: isHovered ? "rgba(0, 217, 255, 0.08)" : "rgba(255, 255, 255, 0.03)",
         }}
-        transition={{ type: "spring", damping: 25, stiffness: 200 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+        className="fixed top-0 left-0 h-[40px] w-[40px] rounded-full pointer-events-none backdrop-blur-[4px] border border-white/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_0_12px_rgba(0,217,255,0.1)] flex items-center justify-center"
+      >
+        {/* Subtle glass reflection highlight rotated -20deg */}
+        <div className="absolute top-[7px] left-[9px] w-[10px] h-[3px] rounded-full bg-white/40 blur-[1.2px] -rotate-[20deg]" />
+      </motion.div>
+
+      {/* ─── Layer 3: Sharp 6px Glowing Center Dot ─── */}
+      <motion.div
+        style={{
+          x: dotX,
+          y: dotY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+        animate={{
+          scale: isHovered ? 0.6 : 1,
+          backgroundColor: isHovered ? "#ffffff" : "#00d9ff",
+        }}
+        transition={{ duration: 0.15 }}
+        className="fixed top-0 left-0 h-[6px] w-[6px] rounded-full pointer-events-none shadow-[0_0_8px_rgba(0,217,255,0.9)]"
       />
-    </>
+    </div>
   );
 }

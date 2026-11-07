@@ -10,23 +10,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "var(--bg)",
+        foreground: "var(--text-primary)",
+        cyan: {
+          DEFAULT: "#00d9ff",
+          muted: "var(--cyan-muted)",
+        },
         neon: {
-          cyan: "#00f0ff",
+          cyan: "#00d9ff",
+          purple: "#a78bfa",
+          amber: "#f59e0b",
           emerald: "#10b981",
-          purple: "#a855f7",
-          blue: "#38bdf8",
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
-        display: ["var(--font-space-grotesk)", "sans-serif"],
-        mono: ["var(--font-jetbrains-mono)", "monospace"],
+        sans: ["var(--font-dm-sans)", "DM Sans", "sans-serif"],
+        comfortaa: ["var(--font-comfortaa)", "Comfortaa", "sans-serif"],
+        display: ["var(--font-comfortaa)", "Comfortaa", "Space Grotesk", "sans-serif"],
+        serif: ["var(--font-instrument-serif)", "Instrument Serif", "serif"],
+        mono: ["var(--font-dm-mono)", "DM Mono", "JetBrains Mono", "monospace"],
       },
       animation: {
         "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "spin-slow": "spin 25s linear infinite",
+        "spin-fast": "spin 3s linear infinite",
       },
     },
   },
