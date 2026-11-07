@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { portfolioData } from "@/data/portfolioData";
 import { IDCard3D } from "@/components/IDCard3D";
+import { ProjectBentoCard } from "@/components/ProjectBentoCard";
 import { ExternalLink, Github, Sparkles } from "lucide-react";
 
 export default function Home() {
@@ -106,110 +107,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ 3. Projects Showcase (`#projects`) ═══ */}
+      {/* ═══ 3. Featured Work Bento Grid (`#projects`) ═══ */}
       <section id="projects" className="space-y-8 scroll-mt-24">
         <div className="space-y-2">
-          <span className="font-mono text-xs uppercase tracking-widest text-cyan-400 font-semibold">
-            01 / Work Systems
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Featured Projects &amp; Live Deployments
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 font-mono text-xs font-semibold">
+            <Sparkles size={12} />
+            <span>01 / FEATURED WORK</span>
+          </div>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+            Featured Systems &amp; Bento Grid
           </h2>
           <p className="text-slate-400 text-sm sm:text-base max-w-2xl font-sans">
-            Real software built and deployed across Next.js 16, Flask, FastAPI, and AWS Bedrock. Click to launch live apps directly.
+            Production software engineered across Next.js 16, Python, FastAPI, and AWS Bedrock. Hover over cards to activate the interactive spotlight, or launch live apps directly.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Bento Grid Container */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <div
-              key={project.id}
-              className={`glass-card p-6 sm:p-8 flex flex-col justify-between ${
-                project.featured ? "md:col-span-2 border-cyan-400/30" : ""
-              }`}
-            >
-              <div className="space-y-4">
-                {/* Header: Filename & Badge */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2.5 w-2.5 rounded-full bg-red-500/80 inline-block" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80 inline-block" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-green-500/80 inline-block" />
-                    <span className="font-mono text-xs text-slate-400 ml-2">{project.filename}</span>
-                  </div>
-                  <span
-                    className={`font-mono text-xs px-2.5 py-0.5 rounded-full border ${
-                      project.badgeType === "live"
-                        ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400"
-                        : project.badgeType === "hackathon"
-                        ? "border-orange-500/40 bg-orange-500/10 text-orange-400"
-                        : "border-cyan-500/40 bg-cyan-500/10 text-cyan-400"
-                    }`}
-                  >
-                    {project.badge}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
-                  {project.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  {project.shortDescription}
-                </p>
-
-                {/* Metrics */}
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {project.metrics.map((m) => (
-                    <div
-                      key={m.label}
-                      className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/5 font-mono text-xs"
-                    >
-                      <span className="text-slate-400">{m.label}: </span>
-                      <span className="text-cyan-300 font-semibold">{m.value}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 pt-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-0.5 rounded-md border border-white/10 bg-white/5 font-mono text-[11px] text-slate-400"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Actions */}
-              <div className="flex items-center gap-3 pt-6 mt-6 border-t border-white/10">
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-cyan-400 text-black font-display text-xs font-bold shadow-[0_0_15px_rgba(0,240,255,0.25)] transition-all hover:bg-cyan-300 hover:scale-105"
-                  >
-                    <span>Launch Live App</span>
-                    <ExternalLink size={13} />
-                  </a>
-                )}
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white font-display text-xs font-semibold hover:border-cyan-400 hover:text-cyan-400 transition-colors"
-                >
-                  <Github size={13} />
-                  <span>Source</span>
-                </a>
-              </div>
-            </div>
+            <ProjectBentoCard key={project.id} project={project} />
           ))}
         </div>
       </section>

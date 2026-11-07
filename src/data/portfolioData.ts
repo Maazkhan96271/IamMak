@@ -11,10 +11,12 @@ export interface MetricItem {
 export interface ProjectItem {
   id: string;
   title: string;
+  subtitle?: string;
   filename: string;
   badge: string;
   badgeType: "live" | "hackathon" | "enterprise";
   featured?: boolean;
+  bentoSpan?: string;
   shortDescription: string;
   tags: string[];
   liveUrl?: string;
@@ -68,6 +70,7 @@ export interface PortfolioData {
     performance: string;
   };
   projects: ProjectItem[];
+  archivedProjects?: ProjectItem[];
   credentials: CredentialItem[];
   forge: ForgeItem[];
 }
@@ -111,14 +114,16 @@ export const portfolioData: PortfolioData = {
   projects: [
     {
       id: "scamshield",
-      title: "ScamShield — AI Scam Risk Analyzer",
+      title: "ScamShield",
+      subtitle: "AI Scam Risk Analyzer",
       filename: "scamshield.tsx",
       badge: "Live on Vercel",
       badgeType: "live",
       featured: true,
+      bentoSpan: "md:col-span-2 lg:col-span-2",
       shortDescription:
-        "An open-source AI scam-risk analyzer for emails, SMS, WhatsApp forwards, payment requests, and QR codes. Combines a deterministic rule engine with LLM inference, quoting exact observed evidence with client-side AES-256-GCM encrypted scan history in IndexedDB.",
-      tags: ["Next.js 16", "React 19", "TypeScript 5", "Tailwind CSS 4", "PWA", "AES-256-GCM", "LLM Heuristics"],
+        "AI Scam Risk Analyzer. An open-source scam detection engine for SMS, emails, WhatsApp forwards, payment requests, and QR codes. Combines a deterministic rule engine with LLM heuristics and client-side AES-256-GCM encrypted scan history in IndexedDB.",
+      tags: ["Next.js 16", "TypeScript", "Tailwind", "LLM Heuristics"],
       liveUrl: "https://scamshield-jet.vercel.app",
       githubUrl: "https://github.com/Maazkhan96271/scamshield",
       metrics: [
@@ -129,41 +134,49 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "hospital-management-system",
-      title: "Hospital Management System (HMS)",
+      title: "Hospital Management System",
+      subtitle: "Full-stack healthcare platform",
       filename: "hospital_app.py",
       badge: "Live on Vercel",
       badgeType: "live",
+      bentoSpan: "md:col-span-1 lg:col-span-1",
       shortDescription:
-        "Full-stack healthcare operations platform featuring secure role-based portals for Admins, Doctors, and Patients. Includes doctor search by specialization, 7-day slot availability scheduling, double-booking conflict prevention, and diagnosis logs.",
-      tags: ["Python", "Flask", "FastAPI", "SQLite", "Bootstrap 5", "Next.js", "RBAC"],
+        "Full-stack healthcare platform featuring secure role-based portals for Admins, Doctors, and Patients with conflict-prevention appointment scheduling, 7-day slot availability, and diagnosis logs.",
+      tags: ["Python", "Flask", "FastAPI", "Next.js"],
       liveUrl: "https://hospital-management-system-spammer.vercel.app",
       githubUrl: "https://github.com/Maazkhan96271/Hospital-Management-System",
       metrics: [
         { label: "Portals", value: "3 Role Isolated" },
         { label: "Engine", value: "Zero-Conflict Booking" },
-        { label: "ORM", value: "SQLAlchemy" },
+        { label: "Architecture", value: "FastAPI + Flask" },
       ],
     },
     {
       id: "gst-recon-agent",
-      title: "Recon-Agent (GST AI Engine)",
+      title: "Recon-Agent",
+      subtitle: "GST AI Engine for AWS First Commit",
       filename: "recon_agent.py",
       badge: "AWS First Commit 2026",
       badgeType: "hackathon",
+      bentoSpan: "md:col-span-1 lg:col-span-3",
       shortDescription:
-        "Autonomous multi-agent GST Input Tax Credit (ITC) reconciliation & recovery engine built for AWS First Commit 2026. Automates compliance under Indian GST Rule 88D with AWS Bedrock, Strands SDK, and dual React 19 / Streamlit surfaces.",
-      tags: ["AWS Bedrock", "Strands SDK", "FastAPI", "DynamoDB", "React 19", "Streamlit"],
+        "GST AI Engine for AWS First Commit. Autonomous multi-agent GST Input Tax Credit (ITC) reconciliation & recovery engine automating compliance under Indian GST Rule 88D with AWS Bedrock.",
+      tags: ["AWS Bedrock", "FastAPI", "React 19"],
       liveUrl: "https://github.com/Maazkhan96271/gst-recon-agent",
       githubUrl: "https://github.com/Maazkhan96271/gst-recon-agent",
       metrics: [
-        { label: "Compliance", value: "Rule 88D" },
+        { label: "Indian Compliance", value: "Rule 88D" },
         { label: "Agent SDK", value: "Strands" },
         { label: "Cloud Model", value: "AWS Bedrock" },
       ],
     },
+  ],
+
+  archivedProjects: [
     {
       id: "b2b-vendor-compliance",
       title: "B2B Vendor Compliance Platform",
+      subtitle: "Enterprise Risk & Vendor Onboarding",
       filename: "vendor_compliance.js",
       badge: "Polaris OJT Sem 1",
       badgeType: "enterprise",
@@ -181,11 +194,12 @@ export const portfolioData: PortfolioData = {
     {
       id: "ai-portfolio",
       title: "AI-Native Developer Portfolio",
-      filename: "portfolio.html",
+      subtitle: "High-Performance Next.js Architecture",
+      filename: "portfolio.tsx",
       badge: "Live on GitHub Pages",
       badgeType: "live",
       shortDescription:
-        "High-performance developer editorial portfolio engineered with zero runtime frameworks for instant sub-second page loads. Features custom in-memory knowledge mesh AI assistant, interactive physics chips, and architecture modal explorer.",
+        "High-performance developer editorial portfolio engineered with Next.js 15 App Router, Framer Motion, and Tailwind CSS. Features 3D interactive flip card, mouse-following radial spotlight bento grid, and deep space dark theme.",
       tags: ["Next.js 16", "Tailwind CSS", "Framer Motion", "TypeScript", "Glassmorphism"],
       liveUrl: "https://maazkhan96271.github.io/maazkhan-ai-portfolio/",
       githubUrl: "https://github.com/Maazkhan96271/maazkhan-ai-portfolio",
