@@ -6,6 +6,8 @@ import { LocationMapCard } from "@/components/LocationMapCard";
 import { AcademicDashboardCard } from "@/components/AcademicDashboardCard";
 import { ValuesBentoRow } from "@/components/ValuesBentoRow";
 import { ProjectBentoCard } from "@/components/ProjectBentoCard";
+import { ExperienceTimeline } from "@/components/ExperienceTimeline";
+import { WorkflowPipeline } from "@/components/WorkflowPipeline";
 import { ExternalLink, Github, Sparkles, UserCheck } from "lucide-react";
 
 export default function Home() {
@@ -15,6 +17,8 @@ export default function Home() {
     mapData,
     academicTrend,
     values,
+    experience,
+    workflow,
     projects,
     credentials,
     forge,
@@ -153,46 +157,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ 4. Credentials & Education (`#credentials`) ═══ */}
-      <section id="credentials" className="space-y-8 scroll-mt-24">
+      {/* ═══ 4. Experience & Development Workflow (`#credentials`) ═══ */}
+      <section id="credentials" className="space-y-12 scroll-mt-24">
         <div className="space-y-2">
-          <span className="font-mono text-xs uppercase tracking-widest text-emerald-400 font-semibold">
-            02 / Academics &amp; Milestones
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Credentials &amp; Experience
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-mono text-xs font-semibold">
+            <Sparkles size={12} />
+            <span>02 / METHODOLOGY &amp; TRACK RECORD</span>
+          </div>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+            Workflow &amp; Experience
           </h2>
           <p className="text-slate-400 text-sm sm:text-base max-w-2xl font-sans">
-            Undergraduate journey at Polaris School of Technology, industry OJT, and hackathon accomplishments.
+            How I architect software from first principles, and my engineering milestones at Polaris School of Technology.
           </p>
         </div>
 
+        {/* Workflow Visualization: Horizontal Animated Pipeline (IDEA → PLAN → AI HELP → CODE → REVIEW → TEST → DEPLOY) */}
         <div className="space-y-4">
-          {credentials.map((cred) => (
-            <div key={cred.title} className="glass-card p-6 sm:p-8 space-y-3">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <div>
-                  <h3 className="font-display text-lg sm:text-xl font-bold text-white">
-                    {cred.title}
-                  </h3>
-                  <p className="font-mono text-xs text-cyan-400">{cred.issuer}</p>
-                </div>
-                <div className="font-mono text-xs text-slate-400 sm:text-right">
-                  <div>{cred.period}</div>
-                  <div className="text-emerald-400">{cred.status}</div>
-                </div>
-              </div>
+          <WorkflowPipeline workflow={workflow} />
+        </div>
 
-              <ul className="space-y-1.5 pt-2 text-sm text-slate-300">
-                {cred.details.map((d, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <span className="text-cyan-400 font-mono">▹</span>
-                    <span>{d}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        {/* Experience Timeline: Sleek Vertical Timeline */}
+        <div className="space-y-6 pt-4">
+          <div className="space-y-1">
+            <span className="font-mono text-xs uppercase tracking-widest text-cyan-400 font-semibold">
+              Chronological Milestones
+            </span>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Engineering Experience
+            </h3>
+          </div>
+
+          <ExperienceTimeline experience={experience} />
         </div>
       </section>
 

@@ -24,6 +24,26 @@ export interface ProjectItem {
   metrics: MetricItem[];
 }
 
+export interface ExperienceItem {
+  id: string;
+  role: string;
+  organization: string;
+  period: string;
+  current?: boolean;
+  badge?: string;
+  description: string;
+  details?: string[];
+  tags: string[];
+}
+
+export interface WorkflowItem {
+  step: number;
+  label: string;
+  shortDesc: string;
+  description: string;
+  icon: string;
+}
+
 export interface CredentialItem {
   title: string;
   issuer: string;
@@ -104,6 +124,8 @@ export interface PortfolioData {
   mapData: MapData;
   academicTrend: AcademicTrendData;
   values: ValueItem[];
+  experience: ExperienceItem[];
+  workflow: WorkflowItem[];
   projects: ProjectItem[];
   archivedProjects?: ProjectItem[];
   credentials: CredentialItem[];
@@ -212,6 +234,92 @@ export const portfolioData: PortfolioData = {
       tagline: "Discipline in every single line of code.",
       badge: "Production Discipline",
       accent: "purple",
+    },
+  ],
+
+  experience: [
+    {
+      id: "pst-btech",
+      role: "B.Tech Applied AI",
+      organization: "Polaris School of Technology",
+      period: "2026 - Present",
+      current: true,
+      badge: "Undergraduate Degree",
+      description:
+        "Undergraduate engineering curriculum focused on applied machine intelligence, systems programming, and high-scale web platforms.",
+      details: [
+        "Rigorous training in Data Structures & Algorithms in modern C++20 and relational architectures.",
+        "Engineering AI-native applications and intelligent agentic workflows in Bengaluru, India.",
+        "Targeting elite software craftsmanship with career horizon: Software Engineer by 2030.",
+      ],
+      tags: ["Applied AI", "C++20", "Systems", "Next.js 16", "Python"],
+    },
+    {
+      id: "polaris-ojt",
+      role: "B2B Vendor Compliance Developer",
+      organization: "Polaris OJT Sem 1",
+      period: "2026",
+      current: false,
+      badge: "Enterprise Ship",
+      description:
+        "Built enterprise risk onboarding platform replacing email threads with centralized document verification and state machines.",
+      details: [
+        "Modeled complex multi-step vendor approval state machines without heavyweight server dependencies.",
+        "Centralized document verification with automated expiration alerts and audit trails.",
+      ],
+      tags: ["Vanilla JS", "Bootstrap", "Enterprise UX"],
+    },
+  ],
+
+  workflow: [
+    {
+      step: 1,
+      label: "IDEA",
+      shortDesc: "Problem Discovery",
+      description: "0 → 1 Problem definition, user friction mapping & feasibility scope.",
+      icon: "Lightbulb",
+    },
+    {
+      step: 2,
+      label: "PLAN",
+      shortDesc: "Architecture & Schemas",
+      description: "Data contracts, database schemas, and state machine specifications.",
+      icon: "FileText",
+    },
+    {
+      step: 3,
+      label: "AI HELP",
+      shortDesc: "Agent Pairing",
+      description: "LLM heuristic design, agentic loops & prompt engineering.",
+      icon: "Bot",
+    },
+    {
+      step: 4,
+      label: "CODE",
+      shortDesc: "Clean Implementation",
+      description: "Type-safe TypeScript, Python, and high-performance frontend/backend code.",
+      icon: "Code2",
+    },
+    {
+      step: 5,
+      label: "REVIEW",
+      shortDesc: "Security & Auditing",
+      description: "Security rules verification, token efficiency, and edge case audits.",
+      icon: "Eye",
+    },
+    {
+      step: 6,
+      label: "TEST",
+      shortDesc: "Validation & Zero-Conflict",
+      description: "End-to-end stress tests, conflict-prevention drills & Lighthouse audits.",
+      icon: "CheckCircle",
+    },
+    {
+      step: 7,
+      label: "DEPLOY",
+      shortDesc: "Cloud Production Ship",
+      description: "Vercel / AWS cloud deploy with automated CI/CD and live telemetry.",
+      icon: "Rocket",
     },
   ],
 
