@@ -8,6 +8,9 @@ import { ValuesBentoRow } from "@/components/ValuesBentoRow";
 import { ProjectBentoCard } from "@/components/ProjectBentoCard";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { WorkflowPipeline } from "@/components/WorkflowPipeline";
+import { ContactForm } from "@/components/ContactForm";
+import { FAQAccordion } from "@/components/FAQAccordion";
+import { Footer } from "@/components/Footer";
 import { ExternalLink, Github, Sparkles, UserCheck } from "lucide-react";
 
 export default function Home() {
@@ -19,6 +22,7 @@ export default function Home() {
     values,
     experience,
     workflow,
+    faq,
     projects,
     credentials,
     forge,
@@ -227,126 +231,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ 6. Persona (`#persona`) ═══ */}
+      {/* ═══ 6. Contact & FAQ Accordion (`#persona`) ═══ */}
       <section id="persona" className="space-y-8 scroll-mt-24">
         <div className="space-y-2">
-          <span className="font-mono text-xs uppercase tracking-widest text-blue-400 font-semibold">
-            04 / Identity &amp; Contact
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Initiate Contact
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 font-mono text-xs font-semibold">
+            <Sparkles size={12} />
+            <span>04 / COMMUNICATION &amp; INTEL</span>
+          </div>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+            Initiate Contact &amp; FAQ
           </h2>
           <p className="text-slate-400 text-sm sm:text-base max-w-2xl font-sans">
-            Ready to collaborate on ambitious software challenges, Applied AI systems, or 2026 software engineering internships.
+            Ready to collaborate on ambitious Applied AI systems, production software engineering, or 2026 internships. Send a direct payload below.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Identity Tile */}
-          <div className="glass-card p-8 flex flex-col justify-between space-y-6">
-            <div className="space-y-3">
-              <span className="font-mono text-xs text-cyan-400">Direct Comms</span>
-              <h3 className="font-display text-2xl font-bold text-white">
-                Maaz Khan
-              </h3>
-              <p className="text-sm text-slate-300 leading-relaxed font-sans">
-                Bengaluru-based Applied AI undergrad at Polaris School of Technology (Class of 2026–2030). Building with Next.js, Python, and C++.
-              </p>
-            </div>
+        {/* Side-by-Side: Contact Form & FAQ Accordion */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          {/* "Send a Message" Form with dark inputs, glowing focus rings, mock fetch() & loading spinner */}
+          <ContactForm emailRecipient={persona.socials.email} />
 
-            <div className="space-y-2 font-mono text-xs text-slate-400 border-t border-white/10 pt-4">
-              <div>Timezone: {persona.timezone}</div>
-              <div>Location: {persona.location}</div>
-            </div>
-
-            <div className="flex flex-wrap gap-3 pt-2">
-              <a
-                href={`mailto:${persona.socials.email}`}
-                className="px-4 py-2 rounded-full bg-cyan-400 text-black font-display text-xs font-bold shadow-[0_0_15px_rgba(0,240,255,0.2)] hover:bg-cyan-300 transition-colors"
-              >
-                Send Email
-              </a>
-              <a
-                href={persona.socials.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white font-display text-xs font-semibold hover:border-cyan-400 hover:text-cyan-400 transition-colors"
-              >
-                LinkedIn
-              </a>
-              <a
-                href={persona.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white font-display text-xs font-semibold hover:border-cyan-400 hover:text-cyan-400 transition-colors"
-              >
-                GitHub
-              </a>
-            </div>
-          </div>
-
-          {/* Contact Dispatch Form */}
-          <div className="glass-card p-8 space-y-4">
-            <span className="font-mono text-xs text-emerald-400">Dispatch Channel</span>
-            <form
-              action={`mailto:${persona.socials.email}`}
-              method="POST"
-              encType="text/plain"
-              className="space-y-4"
-            >
-              <div>
-                <label className="block font-mono text-xs text-slate-400 mb-1">Your Name / Organization</label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="e.g. Acme AI"
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-400"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block font-mono text-xs text-slate-400 mb-1">Your Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="name@company.com"
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-400"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block font-mono text-xs text-slate-400 mb-1">Message Payload</label>
-                <textarea
-                  name="message"
-                  rows={4}
-                  placeholder="Share details on the role or technical collaboration..."
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-400"
-                  required
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 rounded-lg bg-cyan-400 text-black font-display font-bold text-sm shadow-[0_0_20px_rgba(0,240,255,0.25)] hover:bg-cyan-300 transition-all"
-              >
-                Transmit Payload ↵
-              </button>
-            </form>
-          </div>
+          {/* FAQ Accordion: Framer Motion animated accordion with 3 core questions */}
+          <FAQAccordion faq={faq} />
         </div>
       </section>
 
-      {/* ═══ Footer ═══ */}
-      <footer className="border-t border-white/10 pt-8 pb-16 text-center space-y-2">
-        <p className="font-mono text-xs text-slate-400">
-          &copy; 2026 {persona.name} · {persona.degree} @ {persona.college}
-        </p>
-        <p className="text-[11px] text-slate-500">
-          Built with Next.js 16 (App Router), TypeScript, Tailwind CSS, &amp; Framer Motion
-        </p>
-      </footer>
+      {/* ═══ Minimal Footer ═══ */}
+      <Footer
+        githubUrl={persona.socials.github}
+        linkedinUrl={persona.socials.linkedin}
+        email={persona.socials.email}
+      />
 
     </main>
   );

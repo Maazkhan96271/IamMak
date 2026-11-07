@@ -91,6 +91,13 @@ export interface ValueItem {
   accent: "cyan" | "emerald" | "purple";
 }
 
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+  tag: string;
+}
+
 export interface PersonaData {
   name: string;
   tagline: string;
@@ -126,6 +133,7 @@ export interface PortfolioData {
   values: ValueItem[];
   experience: ExperienceItem[];
   workflow: WorkflowItem[];
+  faq: FAQItem[];
   projects: ProjectItem[];
   archivedProjects?: ProjectItem[];
   credentials: CredentialItem[];
@@ -320,6 +328,30 @@ export const portfolioData: PortfolioData = {
       shortDesc: "Cloud Production Ship",
       description: "Vercel / AWS cloud deploy with automated CI/CD and live telemetry.",
       icon: "Rocket",
+    },
+  ],
+
+  faq: [
+    {
+      id: "tech-stack",
+      question: "What is your tech stack?",
+      answer:
+        "Next.js 16, React 19, TypeScript, and Tailwind CSS for frontend engineering; Python (FastAPI, Flask) and C++20 for high-performance backends and DSA drills; and AWS Bedrock foundation models with agentic loops for Applied AI systems.",
+      tag: "Next.js / Python / AI",
+    },
+    {
+      id: "target-goal",
+      question: "What is your target?",
+      answer:
+        "My target is to become an elite Software Engineer by 2030 (SWE 2030). Currently pursuing B.Tech in Applied Artificial Intelligence at Polaris School of Technology in Bengaluru (Class of 2026–2030) and actively targeting 2026 engineering internships.",
+      tag: "SWE 2030 Milestone",
+    },
+    {
+      id: "collaborate",
+      question: "Can we collaborate?",
+      answer:
+        "Yes! I am always open to collaborate on ambitious Applied AI products, high-scale web platforms, hackathon projects, and software engineering opportunities. Reach out using the contact form or email maazkhan96271@gmail.com.",
+      tag: "Open for Collaboration",
     },
   ],
 
