@@ -1,0 +1,644 @@
+{
+  "personal": {
+    "name": "Maaz Khan",
+    "headline": "Full-Stack & Applied AI Engineer",
+    "subheadline": "Engineering resilient web systems and applied intelligence at the intersection of developer craft and production software.",
+    "location": "Bengaluru, India",
+    "timezone": "Asia/Kolkata",
+    "college": "Polaris School of Technology",
+    "degree": "B.Tech in Applied Artificial Intelligence",
+    "admissionYear": "2026",
+    "classBatch": "Class of 2026 – 2030",
+    "careerGoal": "Software Engineer by 2030",
+    "liveStatusText": "Building AI Systems in Bengaluru",
+    "liveStatusSubtext": "Available for 2026 Internships",
+    "typingStrings": [
+      "B.Tech Applied AI @ Polaris (2026–2030)",
+      "Building Next.js 16 & Python Systems",
+      "Applied AI & Multi-Agent Workflows",
+      "DSA & Systems Craft in Modern C++",
+      "Aiming for Elite Software Engineer by 2030"
+    ],
+    "avatarUrl": "assets/avatar.jpg",
+    "resumeUrl": "assets/resume.pdf",
+    "socials": {
+      "github": "https://github.com/Maazkhan96271",
+      "linkedin": "https://www.linkedin.com/in/maaz-khan-9124232bb/",
+      "discord": "https://discord.com/users/maazkhan-26796",
+      "email": "maazkhan96271@gmail.com"
+    }
+  },
+  "statsBento": [
+    {
+      "id": "stat-apps",
+      "title": "Shipped Applications",
+      "metric": "5+",
+      "subtitle": "Production & Open-Source",
+      "description": "Deployed apps spanning Next.js 16, Flask, FastAPI, AWS Bedrock, and PWA security architectures.",
+      "tag": "Live Deployed",
+      "badgeClass": "badge-neon-cyan",
+      "colSpan": 1
+    },
+    {
+      "id": "stat-dsa",
+      "title": "Algorithmic Problems",
+      "metric": "200+",
+      "subtitle": "LeetCode & Competitive DSA",
+      "description": "Rigorous daily drills in C++20: Graph algorithms, Dynamic Programming, and Sliding Window patterns.",
+      "tag": "C++20 & Systems",
+      "badgeClass": "badge-neon-emerald",
+      "colSpan": 1
+    },
+    {
+      "id": "stat-education",
+      "title": "Academic Pedigree",
+      "metric": "2026",
+      "subtitle": "B.Tech Applied AI · Polaris",
+      "description": "Admitted in 2026 at Polaris School of Technology, Bengaluru. Completed Semester 1 On-Job-Training (OJT).",
+      "tag": "PST Bengaluru",
+      "badgeClass": "badge-neon-purple",
+      "colSpan": 1
+    },
+    {
+      "id": "stat-perf",
+      "title": "Architecture Standard",
+      "metric": "100",
+      "suffix": "/100",
+      "subtitle": "Lighthouse Performance",
+      "description": "Zero runtime bloat, sub-second cold starts, and responsive glassmorphic interfaces.",
+      "tag": "Zero-Overhead",
+      "badgeClass": "badge-neon-blue",
+      "colSpan": 1
+    }
+  ],
+  "marqueeTech": [
+    {
+      "name": "Next.js 16",
+      "category": "Frontend",
+      "level": "Production",
+      "icon": "▲"
+    },
+    {
+      "name": "React 19",
+      "category": "Library",
+      "level": "Advanced",
+      "icon": "⚛"
+    },
+    {
+      "name": "TypeScript 5",
+      "category": "Language",
+      "level": "Core",
+      "icon": "TS"
+    },
+    {
+      "name": "Python 3",
+      "category": "Language",
+      "level": "Advanced",
+      "icon": "PY"
+    },
+    {
+      "name": "FastAPI",
+      "category": "Backend",
+      "level": "Microservices",
+      "icon": "⚡"
+    },
+    {
+      "name": "Flask",
+      "category": "Backend",
+      "level": "Full-Stack",
+      "icon": "⚗"
+    },
+    {
+      "name": "AWS Bedrock",
+      "category": "AI Infrastructure",
+      "level": "Multi-Agent",
+      "icon": "☁"
+    },
+    {
+      "name": "Tailwind CSS v4",
+      "category": "Styling",
+      "level": "Design Systems",
+      "icon": "🎨"
+    },
+    {
+      "name": "C++20",
+      "category": "Systems",
+      "level": "DSA & CLI",
+      "icon": "⚙"
+    },
+    {
+      "name": "SQLite & SQLAlchemy",
+      "category": "Database",
+      "level": "Relational",
+      "icon": "🗄"
+    },
+    {
+      "name": "DynamoDB",
+      "category": "Cloud DB",
+      "level": "NoSQL",
+      "icon": "📦"
+    },
+    {
+      "name": "PWA & IndexedDB",
+      "category": "Security",
+      "level": "AES-256-GCM",
+      "icon": "🛡"
+    },
+    {
+      "name": "Docker",
+      "category": "DevOps",
+      "level": "Containers",
+      "icon": "🐳"
+    },
+    {
+      "name": "RESTful APIs",
+      "category": "Architecture",
+      "level": "Contract-First",
+      "icon": "⇄"
+    }
+  ],
+  "projects": [
+    {
+      "id": "scamshield",
+      "title": "ScamShield — AI Scam Risk Analyzer",
+      "filename": "scamshield.tsx",
+      "badge": "Live on Vercel",
+      "badgeType": "live",
+      "featured": true,
+      "colSpan": 2,
+      "shortDescription": "A free, open-source scam-risk analyzer for emails, SMS, WhatsApp forwards, payment requests, and QR codes.",
+      "fullDescription": "ScamShield is an open-source security intelligence application engineered to evaluate suspicious communications before users fall victim to financial or identity fraud. Rather than relying on a single opaque LLM call, ScamShield pairs a deterministic heuristic rule engine with an LLM verification layer — where the more cautious verdict always wins. Every flag isolates observed evidence (quoted directly from the user's input) and highlights exact phrases in real time. For uncompromising user privacy, scan history is encrypted locally using AES-256-GCM with non-extractable keys in browser IndexedDB, leaving zero sensitive data on any external server.",
+      "tags": [
+        "Next.js 16",
+        "React 19",
+        "TypeScript 5",
+        "Tailwind CSS 4",
+        "PWA",
+        "AES-256-GCM",
+        "LLM Heuristics"
+      ],
+      "liveUrl": "https://scamshield-jet.vercel.app",
+      "githubUrl": "https://github.com/Maazkhan96271/scamshield",
+      "embedUrl": "https://scamshield-jet.vercel.app",
+      "metrics": [
+        {
+          "label": "False Positive Priority",
+          "value": "Zero Claim"
+        },
+        {
+          "label": "Rule Evaluation",
+          "value": "< 350ms"
+        },
+        {
+          "label": "History Encryption",
+          "value": "AES-256-GCM"
+        }
+      ],
+      "features": [
+        "Deterministic rule engine + LLM merged verdict with zero fake statistics",
+        "Exact trigger highlighting isolating suspicious phrases in original message",
+        "Client-side AES-256-GCM encrypted scan history in IndexedDB (non-extractable key)",
+        "Regional pattern packs for UPI/KYC, ECOWAS, LATAM, and CN scam vocabularies",
+        "Installable Progressive Web App (PWA) with offline capabilities"
+      ],
+      "challenges": [
+        "Preventing false confidence and AI hallucinations on subtle phishing vectors",
+        "Securing sensitive scan history without creating backend privacy liabilities",
+        "Achieving instant sub-350ms analysis without waiting on heavy cloud roundtrips"
+      ],
+      "solutions": [
+        "Designed a dual-engine architecture: local deterministic heuristics execute instantly, followed by hedged LLM verification",
+        "Implemented client-side cryptography via Web Crypto API with non-extractable AES-GCM keys",
+        "Packaged as a lightweight PWA with local service worker caching for near-instant cold starts"
+      ]
+    },
+    {
+      "id": "hospital-management-system",
+      "title": "Hospital Management System (HMS)",
+      "filename": "hospital_app.py",
+      "badge": "Live on Vercel",
+      "badgeType": "live",
+      "featured": false,
+      "colSpan": 1,
+      "shortDescription": "Full-stack healthcare operations platform featuring secure role-based portals for Admins, Doctors, and Patients.",
+      "fullDescription": "A comprehensive, multi-portal hospital operating system engineered to streamline patient appointment scheduling, staff coordination, and medical history tracking. Developed as part of Modern Application Development (MAD 1), HMS enforces strict role-based access control (RBAC) across three distinct portals: an Admin dashboard for staff CRUD and clinic telemetry, a Doctor workspace for 7-day schedule management and treatment logging, and a self-service Patient portal with real-time doctor search, slot reservation, and automated double-booking prevention.",
+      "tags": [
+        "Python",
+        "Flask",
+        "FastAPI",
+        "SQLite",
+        "Bootstrap 5",
+        "Next.js",
+        "RBAC"
+      ],
+      "liveUrl": "https://hospital-management-system-spammer.vercel.app",
+      "githubUrl": "https://github.com/Maazkhan96271/Hospital-Management-System",
+      "embedUrl": null,
+      "metrics": [
+        {
+          "label": "Portals",
+          "value": "3 Isolated"
+        },
+        {
+          "label": "Scheduling",
+          "value": "Zero-Conflict"
+        },
+        {
+          "label": "ORM",
+          "value": "SQLAlchemy"
+        }
+      ],
+      "features": [
+        "Three isolated role-based portals (Admin, Doctor, Patient) with session-based authentication",
+        "Real-time doctor discovery filtered by department, specialization, and 7-day availability",
+        "Zero-conflict appointment scheduling engine preventing double-booking overlaps",
+        "Comprehensive diagnosis, prescription, and treatment note logging against completed visits",
+        "Dual-backend architecture bridging Flask/FastAPI with SQLite and modern Next.js frontend"
+      ],
+      "challenges": [
+        "Preventing race conditions and concurrent double-booking of doctor time slots",
+        "Enforcing strict data access boundaries between doctor records and patient histories",
+        "Managing relational database integrity with dynamic doctor availability windows"
+      ],
+      "solutions": [
+        "Implemented atomic database transactions and slot validation rules at the ORM layer",
+        "Constructed role-checking decorators (@admin_required, @doctor_required) in Flask/FastAPI",
+        "Designed normalized relational schemas in SQLAlchemy with indexing on doctor IDs and timestamps"
+      ]
+    },
+    {
+      "id": "gst-recon-agent",
+      "title": "Recon-Agent (GST AI Engine)",
+      "filename": "recon_agent.py",
+      "badge": "AWS First Commit 2026",
+      "badgeType": "hackathon",
+      "featured": false,
+      "colSpan": 1,
+      "shortDescription": "Autonomous multi-agent GST Input Tax Credit (ITC) reconciliation & recovery engine built for AWS First Commit 2026.",
+      "fullDescription": "Recon-Agent is an autonomous compliance intelligence platform built for the WeMakeDevs AWS First Commit 2026 hackathon. It automates GST Input Tax Credit recovery under Indian GST Rule 88D and Section 16(2)(aa). Orchestrated using AWS Bedrock foundation models and the Strands agentic SDK, the system continuously ingests GSTR-2B vs GSTR-3B filings, detects invoice discrepancies, calculates tax liability deltas, and dispatches multi-channel supplier follow-ups with immutable DynamoDB audit trails.",
+      "tags": [
+        "AWS Bedrock",
+        "Strands SDK",
+        "FastAPI",
+        "DynamoDB",
+        "React 19",
+        "Streamlit"
+      ],
+      "liveUrl": "https://github.com/Maazkhan96271/gst-recon-agent",
+      "githubUrl": "https://github.com/Maazkhan96271/gst-recon-agent",
+      "embedUrl": null,
+      "metrics": [
+        {
+          "label": "Compliance",
+          "value": "Rule 88D"
+        },
+        {
+          "label": "Agent SDK",
+          "value": "Strands"
+        },
+        {
+          "label": "Cloud Model",
+          "value": "AWS Bedrock"
+        }
+      ],
+      "features": [
+        "Autonomous multi-agent reconciliation pipeline matching purchase registers against GST portal fixtures",
+        "Strict regulatory compliance engine encoding GST Rule 88D and Section 16(2)(aa) constraints",
+        "AWS Bedrock LLM integration for automated discrepancy justification and supplier recovery drafts",
+        "Dual-surface frontend: responsive React 19 + Vite product dashboard and Streamlit compliance console",
+        "FastAPI orchestration gateway with DynamoDB audit logging for end-to-end trace verification"
+      ],
+      "challenges": [
+        "Processing high-volume tabular tax filings without losing precision or hallucinating deltas",
+        "Unifying two different interfaces (Streamlit console and React dashboard) to a single backend source of truth",
+        "Orchestrating multi-agent state machines reliably within cloud latency targets"
+      ],
+      "solutions": [
+        "Separated deterministic ledger math from LLM explanation: all deltas computed programmatically",
+        "Built a centralized /api/dispatch gateway in FastAPI consumed equally by both frontend surfaces",
+        "Integrated Strands SDK agent loops with structured JSON schemas and fallback engines for zero-cloud offline demos"
+      ]
+    },
+    {
+      "id": "b2b-vendor-compliance",
+      "title": "B2B Vendor Compliance Platform",
+      "filename": "vendor_compliance.js",
+      "badge": "Polaris OJT Sem 1",
+      "badgeType": "enterprise",
+      "featured": false,
+      "colSpan": 1,
+      "shortDescription": "Enterprise vendor risk and compliance onboarding platform built during Semester 1 OJT at Polaris School of Technology.",
+      "fullDescription": "Developed as a 1-month intensive project during Semester 1 On-Job-Training (OJT) at Polaris School of Technology. The platform replaces fragmented email onboarding workflows with a centralized compliance portal. It automates vendor credential verification, monitors document expiration dates, and calculates operational risk scores without relying on bulky external frameworks or complex database dependencies.",
+      "tags": [
+        "Vanilla JavaScript",
+        "Bootstrap 5",
+        "HTML5",
+        "CSS3",
+        "State Machine",
+        "Enterprise UX"
+      ],
+      "liveUrl": "https://github.com/Maazkhan96271/b2b-vendor-onboarding-compliance-ojt-sem1-pst",
+      "githubUrl": "https://github.com/Maazkhan96271/b2b-vendor-onboarding-compliance-ojt-sem1-pst",
+      "embedUrl": null,
+      "metrics": [
+        {
+          "label": "Execution",
+          "value": "1-Month OJT"
+        },
+        {
+          "label": "Architecture",
+          "value": "Client State"
+        },
+        {
+          "label": "Monitoring",
+          "value": "Real-Time Expiry"
+        }
+      ],
+      "features": [
+        "Centralized vendor risk dashboard with real-time compliance scoring and document status badges",
+        "Automated expiration monitoring system generating proactive renewal alerts",
+        "Client-side reactive state machine handling multi-step vendor approval lifecycles",
+        "Zero-dependency architecture proving enterprise logic execution with vanilla JavaScript and Bootstrap 5",
+        "Audit log viewer tracking compliance transitions and submission milestones"
+      ],
+      "challenges": [
+        "Maintaining complex multi-step enterprise approval state without a backend server",
+        "Validating multifaceted vendor tax, legal, and operational documents with clean UX",
+        "Ensuring rapid client-side search and filtering across simulated vendor directories"
+      ],
+      "solutions": [
+        "Engineered an event-driven state machine stored in structured browser local storage with transactional updates",
+        "Designed a modular validation schema validating GSTIN, PAN, and certificate expiry dates",
+        "Implemented debounced DOM search queries rendering instantaneous UI updates"
+      ]
+    },
+    {
+      "id": "ai-portfolio",
+      "title": "AI-Native Developer Portfolio",
+      "filename": "portfolio.html",
+      "badge": "Live on GitHub Pages",
+      "badgeType": "live",
+      "featured": false,
+      "colSpan": 1,
+      "shortDescription": "High-performance developer editorial portfolio engineered with zero runtime frameworks for instant sub-second page loads.",
+      "fullDescription": "A developer portfolio engineered with a focus on web fundamentals and craft. Built completely framework-free in vanilla HTML5, CSS3, and modern JavaScript, achieving a perfect 100/100 Lighthouse performance score and sub-second load times. Features a deep space futuristic glassmorphism aesthetic, interactive mouse-tracking spotlight, dynamic tech marquee, and an instant-response AI assistant drawer.",
+      "tags": [
+        "Vanilla JavaScript",
+        "Glassmorphism",
+        "Bento Grid",
+        "Knowledge Mesh",
+        "GitHub Pages"
+      ],
+      "liveUrl": "https://maazkhan96271.github.io/maazkhan-ai-portfolio/",
+      "githubUrl": "https://github.com/Maazkhan96271/maazkhan-ai-portfolio",
+      "embedUrl": null,
+      "metrics": [
+        {
+          "label": "Performance",
+          "value": "100/100"
+        },
+        {
+          "label": "Cold Start",
+          "value": "< 0.3s"
+        },
+        {
+          "label": "Framework",
+          "value": "0kb Vanilla"
+        }
+      ],
+      "features": [
+        "Zero-build vanilla web architecture deploying seamlessly to GitHub Pages",
+        "Futuristic glassmorphism with dynamic mouse-tracking glowing borders",
+        "Infinite CSS tech marquee and responsive asymmetric Bento Grid layouts",
+        "Integrated 'Ask Maaz AI' conversation drawer powered by an in-memory knowledge mesh",
+        "Decoupled data layer architecture simulating a production backend"
+      ],
+      "challenges": [
+        "Achieving modern React/Next.js visual polish and interactivity without framework overhead",
+        "Maintaining responsive perfection from mobile screens to 4K displays",
+        "Designing an AI assistant with zero server cost and instantaneous response latency"
+      ],
+      "solutions": [
+        "Leveraged modern CSS custom properties, clamp() typography, and hardware-accelerated transforms",
+        "Built an in-memory keyword-scored knowledge mesh responding in < 400ms without backend cold starts",
+        "Automated continuous deployment via GitHub Pages on git push"
+      ]
+    }
+  ],
+  "bentoAbout": [
+    {
+      "id": "bio-tile",
+      "gridArea": "bio",
+      "title": "Bridging Human Interfaces with Machine Intelligence",
+      "badge": "Engineering Philosophy",
+      "content": "I'm **Maaz Khan** — a B.Tech Applied AI student at **Polaris School of Technology** in Bengaluru, admitted in **2026** (Class of 2026–2030). I began with raw HTML & CSS fundamentals, evolved into modern React and Python backend architectures, and now build production systems at the forefront of AI and web platforms. My goal is simple: become an exceptional, high-impact **Software Engineer by 2030**."
+    },
+    {
+      "id": "clock-tile",
+      "gridArea": "clock",
+      "title": "Bengaluru Time",
+      "badge": "Local Telemetry",
+      "type": "live-clock"
+    },
+    {
+      "id": "status-tile",
+      "gridArea": "status",
+      "title": "Current Status",
+      "badge": "Availability",
+      "statusText": "🟢 Open for 2026 Internships",
+      "subtext": "Remote / Hybrid / Bengaluru on-site"
+    },
+    {
+      "id": "stack-tile",
+      "gridArea": "stack",
+      "title": "Core Stack",
+      "badge": "Full-Stack Arsenal",
+      "items": [
+        {
+          "label": "Frontend",
+          "val": "Next.js 16, React 19, TypeScript, Tailwind v4"
+        },
+        {
+          "label": "Backend",
+          "val": "Python, FastAPI, Flask, SQLite, Node.js"
+        },
+        {
+          "label": "AI & Cloud",
+          "val": "AWS Bedrock, Strands SDK, PWA, DynamoDB"
+        },
+        {
+          "label": "Systems",
+          "val": "C++20 Data Structures, Linux, Docker, Git"
+        }
+      ]
+    },
+    {
+      "id": "ojt-tile",
+      "gridArea": "ojt",
+      "title": "Polaris OJT Experience",
+      "badge": "Semester 1 Milestone",
+      "content": "Shipped enterprise B2B compliance automation software during Semester 1 On-Job-Training (OJT). Engineered state machines and automated risk scoring with zero backend server dependencies."
+    }
+  ],
+  "timeline": [
+    {
+      "id": "timeline-1",
+      "title": "B.Tech in Applied Artificial Intelligence",
+      "organization": "Polaris School of Technology · Bengaluru, India",
+      "period": "Aug 2026 – Present",
+      "status": "Current Student & Builder",
+      "bullets": [
+        "Admitted in 2026 to the 4-year undergraduate program focusing on Applied AI systems, algorithms, and full-stack software development.",
+        "Rigorous coursework in Data Structures & Algorithms in C++, computer systems, and relational databases.",
+        "Engineered enterprise compliance software during Semester 1 On-Job-Training (OJT), demonstrating production workflow logic.",
+        "Competed in nationwide engineering hackathons including WeMakeDevs AWS First Commit 2026."
+      ]
+    },
+    {
+      "id": "timeline-2",
+      "title": "Production Full-Stack & AI Systems",
+      "organization": "Independent Engineering · GitHub & Vercel",
+      "period": "2026 – Present",
+      "status": "Live Open-Source Deployments",
+      "bullets": [
+        "Shipped ScamShield (Next.js 16/React 19/PWA) live on Vercel with client-side AES-256-GCM encryption and dual heuristic/LLM analysis.",
+        "Engineered Hospital Management System (HMS) with 3 isolated role-based portals and double-booking conflict prevention in Flask/FastAPI.",
+        "Architected Recon-Agent for AWS First Commit 2026 with AWS Bedrock, Strands SDK, and DynamoDB for autonomous GST Rule 88D recovery.",
+        "Engineered this zero-framework, 100/100 Lighthouse performance portfolio with decoupled data architecture and live interactive assistant."
+      ]
+    }
+  ],
+  "skillsMatrix": {
+    "frontend": [
+      {
+        "name": "Next.js 16 / React 19",
+        "level": 90
+      },
+      {
+        "name": "TypeScript 5",
+        "level": 85
+      },
+      {
+        "name": "Tailwind CSS v4 & Glassmorphism",
+        "level": 92
+      },
+      {
+        "name": "Vanilla HTML5 / CSS3 / ES6+",
+        "level": 95
+      },
+      {
+        "name": "Progressive Web Apps (PWA)",
+        "level": 82
+      }
+    ],
+    "backendAi": [
+      {
+        "name": "Python 3 & FastAPI",
+        "level": 88
+      },
+      {
+        "name": "Flask & SQLAlchemy",
+        "level": 85
+      },
+      {
+        "name": "AWS Bedrock & Strands SDK",
+        "level": 80
+      },
+      {
+        "name": "Prompt Engineering & Heuristics",
+        "level": 90
+      },
+      {
+        "name": "SQLite & DynamoDB",
+        "level": 82
+      }
+    ],
+    "systemsTools": [
+      {
+        "name": "C++20 (Algorithms & Data Structures)",
+        "level": 85
+      },
+      {
+        "name": "Git, GitHub & CI/CD",
+        "level": 90
+      },
+      {
+        "name": "Docker & Containerization",
+        "level": 78
+      },
+      {
+        "name": "Linux & POSIX Shell",
+        "level": 82
+      },
+      {
+        "name": "Web Crypto API (AES-256-GCM)",
+        "level": 84
+      }
+    ]
+  },
+  "aiKnowledge": [
+    {
+      "keywords": [
+        "project",
+        "built",
+        "work",
+        "portfolio",
+        "app",
+        "scamshield",
+        "hospital",
+        "recon"
+      ],
+      "answer": "Maaz has built 5 production and open-source applications (all live or accessible on GitHub):\n\n1. **ScamShield** (Next.js 16 · React 19 · PWA)\n• AI scam risk analyzer merging deterministic heuristics with LLM inference\n• Client-side AES-256-GCM encrypted scan history in IndexedDB\n• **Live App**: https://scamshield-jet.vercel.app\n• **GitHub**: https://github.com/Maazkhan96271/scamshield\n\n2. **Hospital Management System (HMS)**\n• Full-stack healthcare platform in Python/Flask, SQLite, FastAPI, Next.js\n• 3 role-based portals (Admin, Doctor, Patient) with conflict-free booking\n• **Live App**: https://hospital-management-system-spammer.vercel.app\n• **GitHub**: https://github.com/Maazkhan96271/Hospital-Management-System\n\n3. **Recon-Agent (GST ITC AI Engine)**\n• Autonomous multi-agent tax recovery engine for AWS First Commit 2026\n• Powered by AWS Bedrock, Strands SDK, and DynamoDB\n• **GitHub**: https://github.com/Maazkhan96271/gst-recon-agent\n\n4. **B2B Vendor Compliance Platform**\n• Enterprise onboarding platform from Polaris Semester 1 OJT\n• Centralized risk scoring, document expiry tracking, and state machines\n• **GitHub**: https://github.com/Maazkhan96271/b2b-vendor-onboarding-compliance-ojt-sem1-pst\n\n5. **AI-Native Developer Portfolio**\n• Zero-framework, 100/100 Lighthouse performance portfolio with this AI drawer\n• **Live App**: https://maazkhan96271.github.io/maazkhan-ai-portfolio/\n• **GitHub**: https://github.com/Maazkhan96271/maazkhan-ai-portfolio"
+    },
+    {
+      "keywords": [
+        "who",
+        "about",
+        "student",
+        "polaris",
+        "maaz",
+        "education",
+        "admission",
+        "college",
+        "university"
+      ],
+      "answer": "Maaz Khan is an **Applied AI student** at Polaris School of Technology in Bengaluru, India (admitted in **2026**, Class of 2026–2030). He builds production AI-assisted web platforms (Next.js, React, Flask, FastAPI), C++ systems, and enterprise compliance tools with a clear mission to become a world-class Software Engineer by **2030**."
+    },
+    {
+      "keywords": [
+        "skill",
+        "tech",
+        "stack",
+        "language",
+        "python",
+        "c++",
+        "react",
+        "nextjs",
+        "tools"
+      ],
+      "answer": "Maaz's core technical stack includes:\n• **Languages**: Python, TypeScript, JavaScript (ES6+), C++20, SQL\n• **Frontend & Frameworks**: Next.js 16, React 19, Tailwind CSS v4, Bootstrap 5, PWA\n• **Backend & AI**: Flask, FastAPI, AWS Bedrock, Strands SDK, SQLAlchemy, SQLite, Node.js\n• **Tools & Systems**: Git, Docker, Linux, DynamoDB, IndexedDB (AES-256-GCM), VS Code"
+    },
+    {
+      "keywords": [
+        "contact",
+        "hire",
+        "email",
+        "internship",
+        "reach",
+        "message",
+        "discord",
+        "linkedin"
+      ],
+      "answer": "You can connect with Maaz directly:\n• **Email**: maazkhan96271@gmail.com\n• **LinkedIn**: linkedin.com/in/maaz-khan-9124232bb/\n• **GitHub**: github.com/Maazkhan96271\n• **Discord**: @maazkhan-26796\nHe is actively open for Software Engineering internships and technical collaborations!"
+    },
+    {
+      "keywords": [
+        "goal",
+        "2030",
+        "career",
+        "future"
+      ],
+      "answer": "Maaz's primary milestone is to excel as a top-tier Software Engineer by **2030**, engineering high-scale distributed architectures, resilient full-stack systems, and cutting-edge applied AI products."
+    }
+  ]
+}
