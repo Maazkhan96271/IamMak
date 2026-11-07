@@ -8,105 +8,140 @@
 
   /* ---------- 1. Projects Architecture Data ---------- */
   const PROJECTS_ARCH = {
-    "prompt-playground": {
-      title: "Prompt Playground",
-      shortDescription: "High-performance LLM experimentation sandbox for evaluating model completions side-by-side with latency benchmarking and variant scoring.",
-      fullDescription: "Prompt Playground is an AI developer workspace designed to streamline prompt engineering workflows. Developers can run concurrent model inferences across different parameter configurations (temperature, top-p, system instructions), compare multi-turn completions side-by-side, benchmark latency and token consumption, and export the best-performing prompts directly into production code.",
-      tags: ["React", "TypeScript", "LLM APIs", "FastAPI", "TailwindCSS"],
+    "scamshield": {
+      title: "ScamShield — AI Scam Risk Analyzer",
+      shortDescription: "A free, open-source scam-risk analyzer for emails, SMS, WhatsApp forwards, payment requests, and QR codes.",
+      fullDescription: "ScamShield is an open-source security intelligence application engineered to evaluate suspicious communications before users fall victim to financial or identity fraud. Rather than relying on a single opaque LLM call, ScamShield pairs a deterministic heuristic rule engine with an LLM verification layer — where the more cautious verdict always wins. Every flag isolates observed evidence (quoted directly from the user's input) and highlights exact phrases in real time. For uncompromising user privacy, scan history is encrypted locally using AES-256-GCM with non-extractable keys in browser IndexedDB, leaving zero sensitive data on any external server.",
+      tags: ["Next.js 16", "React 19", "TypeScript 5", "Tailwind CSS 4", "PWA", "AES-256-GCM", "LLM APIs"],
       features: [
-        "Side-by-side multi-model comparison interface with real-time streaming tokens",
-        "Dynamic system prompt and variable substitution engine",
-        "Latency, token count, and cost estimation telemetry",
-        "Preset library with version control for experiment iterations",
-        "One-click code snippet export in Python, TypeScript, and cURL"
+        "Deterministic rule engine + LLM merged verdict with zero fake statistics",
+        "Exact trigger highlighting isolating suspicious phrases in original message",
+        "Client-side AES-256-GCM encrypted scan history in IndexedDB (non-extractable key)",
+        "Regional pattern packs for UPI/KYC, ECOWAS, LATAM, and CN scam vocabularies",
+        "Installable Progressive Web App (PWA) with offline capabilities"
       ],
       challenges: [
-        "Handling simultaneous streaming responses across heterogeneous API providers without UI stutter",
-        "Managing persistent prompt version histories in browser storage while keeping state lightweight",
-        "Calculating token metrics accurately across differing tokenizers (cl100k_base, sentencepiece)"
+        "Preventing false confidence and AI hallucinations on subtle phishing vectors",
+        "Securing sensitive scan history without creating backend privacy liabilities",
+        "Achieving instant sub-350ms analysis without waiting on heavy cloud roundtrips"
       ],
       solutions: [
-        "Architected an asynchronous worker queue utilizing Web Streams API for lag-free token updates",
-        "Implemented an indexed storage schema with delta snapshots for prompt history management",
-        "Integrated lightweight client-side BPE tokenizer approximations for instant metrics"
+        "Designed a dual-engine architecture: local deterministic heuristics execute instantly, followed by hedged LLM verification",
+        "Implemented client-side cryptography via Web Crypto API with non-extractable AES-GCM keys",
+        "Packaged as a lightweight PWA with local service worker caching for near-instant cold starts"
       ],
-      github: "https://github.com/Maazkhan96271",
-      live: "https://maazkhan96271.github.io/maazkhan-ai-portfolio/#projects"
+      github: "https://github.com/Maazkhan96271/scamshield",
+      live: "https://scamshield-jet.vercel.app",
+      liveText: "Launch Live App (scamshield-jet.vercel.app) ↗",
+      embedUrl: "https://scamshield-jet.vercel.app"
     },
-    "studymate-ai": {
-      title: "StudyMate AI",
-      shortDescription: "Intelligent study companion that transforms unstructured lecture notes and PDFs into structured summaries, active-recall flashcards, and practice exams.",
-      fullDescription: "StudyMate AI is an educational productivity platform built for university students. Leveraging NLP and generative AI, it digests complex course material, extracts foundational concepts, and dynamically generates spaced-repetition flashcards and adaptive mock quizzes to reinforce long-term concept retention.",
-      tags: ["Python", "Flask", "LangChain", "React", "NLP"],
+    "hospital-management-system": {
+      title: "Hospital Management System (HMS)",
+      shortDescription: "Full-stack healthcare operations platform featuring secure role-based portals for Admins, Doctors, and Patients.",
+      fullDescription: "A comprehensive, multi-portal hospital operating system engineered to streamline patient appointment scheduling, staff coordination, and medical history tracking. Developed as part of Modern Application Development (MAD 1), HMS enforces strict role-based access control (RBAC) across three distinct portals: an Admin dashboard for staff CRUD and clinic telemetry, a Doctor workspace for 7-day schedule management and treatment logging, and a self-service Patient portal with real-time doctor search, slot reservation, and automated double-booking prevention.",
+      tags: ["Python", "Flask", "FastAPI", "SQLite", "SQLAlchemy", "Bootstrap 5", "Next.js", "Flask-Login"],
       features: [
-        "Multimodal document ingestion supporting raw text, Markdown, and PDF lecture slides",
-        "Recursive hierarchical summarization for long-context lecture transcripts",
-        "Automated flashcard synthesis with spaced repetition interval scheduling",
-        "Interactive quiz generation with automated explanation of incorrect choices",
-        "Exportable study guides in Anki and Markdown formats"
+        "Three isolated role-based portals (Admin, Doctor, Patient) with session-based authentication",
+        "Real-time doctor discovery filtered by department, specialization, and 7-day availability",
+        "Zero-conflict appointment scheduling engine preventing double-booking overlaps",
+        "Comprehensive diagnosis, prescription, and treatment note logging against completed visits",
+        "Dual-backend architecture bridging Flask/FastAPI with SQLite and modern Next.js frontend"
       ],
       challenges: [
-        "Preventing hallucinated questions when processing dense technical subjects",
-        "Chunking long lecture transcripts without splitting critical context or definitions",
-        "Optimizing API response latency when processing multi-page documents"
+        "Preventing race conditions and concurrent double-booking of doctor time slots",
+        "Enforcing strict data access boundaries between doctor records and patient histories",
+        "Managing relational database integrity with dynamic doctor availability windows"
       ],
       solutions: [
-        "Built context-aware semantic chunking pipelines preserving heading hierarchies",
-        "Enforced strict JSON schema validation and verification loops on model outputs",
-        "Implemented background chunk processing with incremental streaming feedback"
+        "Implemented atomic database transactions and slot validation rules at the ORM layer",
+        "Constructed role-checking decorators (@admin_required, @doctor_required) in Flask/FastAPI",
+        "Designed normalized relational schemas in SQLAlchemy with indexing on doctor IDs and timestamps"
       ],
-      github: "https://github.com/Maazkhan96271",
-      live: "https://maazkhan96271.github.io/maazkhan-ai-portfolio/#projects"
+      github: "https://github.com/Maazkhan96271/Hospital-Management-System",
+      live: "https://hospital-management-system-spammer.vercel.app",
+      liveText: "Launch Live App (hospital-management-system-spammer.vercel.app) ↗",
+      embedUrl: null
     },
-    "dsa-drill": {
-      title: "DSA Drill",
-      shortDescription: "Terminal-based spaced repetition CLI tool designed in modern C++ to drill data structures and algorithmic patterns before technical interviews.",
-      fullDescription: "DSA Drill is an interactive command-line application built for aspiring software engineers. Instead of passive memorization, DSA Drill forces active recall of critical patterns (two pointers, sliding window, topological sort, monotonic stack) through timed terminal drills, performance tracking, and spaced repetition intervals.",
-      tags: ["C++20", "Algorithms", "CLI", "Data Structures", "Linux"],
+    "gst-recon-agent": {
+      title: "Recon-Agent — GST ITC Reconciliation Engine",
+      shortDescription: "Autonomous multi-agent GST Input Tax Credit (ITC) reconciliation & recovery engine built for AWS First Commit 2026.",
+      fullDescription: "Recon-Agent is an autonomous compliance intelligence platform built for the WeMakeDevs AWS First Commit 2026 hackathon. It automates GST Input Tax Credit recovery under Indian GST Rule 88D and Section 16(2)(aa). Orchestrated using AWS Bedrock foundation models and the Strands agentic SDK, the system continuously ingests GSTR-2B vs GSTR-3B filings, detects invoice discrepancies, calculates tax liability deltas, and dispatches multi-channel supplier follow-ups with immutable DynamoDB audit trails.",
+      tags: ["AWS Bedrock", "Strands SDK", "Python", "FastAPI", "DynamoDB", "React 19", "Vite 7", "Streamlit"],
       features: [
-        "Curated library of 100+ fundamental patterns categorized by complexity and frequency",
-        "SuperMemo-2 (SM-2) spaced repetition algorithm tailored to problem-solving drills",
-        "Interactive CLI with colored syntax highlighting and progress visualization",
-        "Local persistent telemetry tracking speed, accuracy, and confidence curves",
-        "Custom pattern authoring workflow in simple YAML format"
+        "Autonomous multi-agent reconciliation pipeline matching purchase registers against GST portal fixtures",
+        "Strict regulatory compliance engine encoding GST Rule 88D and Section 16(2)(aa) constraints",
+        "AWS Bedrock LLM integration for automated discrepancy justification and supplier recovery drafts",
+        "Dual-surface frontend: responsive React 19 + Vite product dashboard and Streamlit compliance console",
+        "FastAPI orchestration gateway with DynamoDB audit logging for end-to-end trace verification"
       ],
       challenges: [
-        "Ensuring zero external dependency bloat while delivering a responsive TUI",
-        "Designing a cross-platform ANSI escape sequencing engine for terminal rendering",
-        "Modeling efficient in-memory graph and tree data structures in modern C++"
+        "Processing high-volume tabular tax filings without losing precision or hallucinating deltas",
+        "Unifying two different interfaces (Streamlit console and React dashboard) to a single backend source of truth",
+        "Orchestrating multi-agent state machines reliably within cloud latency targets"
       ],
       solutions: [
-        "Authored the core TUI renderer from scratch using POSIX terminal control sequences",
-        "Utilized modern C++20 standard library features (concepts, ranges) for minimal binary size",
-        "Serialized flashcard mastery data into lightweight binary storage for sub-millisecond startup"
+        "Separated deterministic ledger math from LLM explanation: all deltas computed programmatically",
+        "Built a centralized /api/dispatch gateway in FastAPI consumed equally by both frontend surfaces",
+        "Integrated Strands SDK agent loops with structured JSON schemas and fallback engines for zero-cloud offline demos"
       ],
-      github: "https://github.com/Maazkhan96271",
-      live: "https://github.com/Maazkhan96271"
+      github: "https://github.com/Maazkhan96271/gst-recon-agent",
+      live: "https://github.com/Maazkhan96271/gst-recon-agent",
+      liveText: "View Engine on GitHub ↗",
+      embedUrl: null
+    },
+    "b2b-vendor-compliance": {
+      title: "B2B Vendor Onboarding & Compliance Platform",
+      shortDescription: "Enterprise vendor risk and compliance onboarding platform built during Semester 1 OJT at Polaris School of Technology.",
+      fullDescription: "Developed as a 1-month intensive project during Semester 1 On-Job-Training (OJT) at Polaris School of Technology. The platform replaces fragmented email onboarding workflows with a centralized compliance portal. It automates vendor credential verification, monitors document expiration dates, and calculates operational risk scores without relying on bulky external frameworks or complex database dependencies.",
+      tags: ["Vanilla JavaScript", "Bootstrap 5", "HTML5", "CSS3", "State Machine", "Enterprise UX"],
+      features: [
+        "Centralized vendor risk dashboard with real-time compliance scoring and document status badges",
+        "Automated expiration monitoring system generating proactive renewal alerts",
+        "Client-side reactive state machine handling multi-step vendor approval lifecycles",
+        "Zero-dependency architecture proving enterprise logic execution with vanilla JavaScript and Bootstrap 5",
+        "Audit log viewer tracking compliance transitions and submission milestones"
+      ],
+      challenges: [
+        "Maintaining complex multi-step enterprise approval state without a backend server",
+        "Validating multifaceted vendor tax, legal, and operational documents with clean UX",
+        "Ensuring rapid client-side search and filtering across simulated vendor directories"
+      ],
+      solutions: [
+        "Engineered an event-driven state machine stored in structured browser local storage with transactional updates",
+        "Designed a modular validation schema validating GSTIN, PAN, and certificate expiry dates",
+        "Implemented debounced DOM search queries rendering instantaneous UI updates"
+      ],
+      github: "https://github.com/Maazkhan96271/b2b-vendor-onboarding-compliance-ojt-sem1-pst",
+      live: "https://github.com/Maazkhan96271/b2b-vendor-onboarding-compliance-ojt-sem1-pst",
+      liveText: "View Repository on GitHub ↗",
+      embedUrl: null
     },
     "ai-portfolio": {
-      title: "AI-Native Portfolio",
-      shortDescription: "High-performance developer portfolio featuring interactive physics chips, dark/light themes, project architecture modals, and built-in AI assistant.",
-      fullDescription: "Designed and engineered as a showcase of modern web architecture and UI/UX design. Built from the ground up without heavy frameworks to achieve near-instant initial render times, smooth 60fps animations, keyboard accessibility, and an intelligent interactive assistant.",
-      tags: ["JavaScript", "HTML5", "CSS3", "Design Systems", "AI Assistant"],
+      title: "AI-Native Developer Portfolio & Assistant",
+      shortDescription: "High-performance developer editorial portfolio with zero-runtime frameworks, live AI knowledge mesh, and IDE cards.",
+      fullDescription: "A developer portfolio engineered with a focus on web fundamentals and craft. Built completely framework-free in vanilla HTML5, CSS3, and modern JavaScript, achieving a perfect 100/100 Lighthouse performance score and sub-second load times. Features a GitHub Dark / VS Code editorial aesthetic inspired by top engineers, interactive physics tech chips, deep-dive architecture modal explorer, and an instant-response AI assistant drawer.",
+      tags: ["Vanilla JavaScript", "HTML5", "CSS3", "Design Systems", "Knowledge Mesh", "GitHub Pages"],
       features: [
-        "Two-column editorial hero layout with profile glow ring and telemetry badges",
-        "Adaptive dark/light theme engine persisted across visits",
-        "Deep architecture project modals with technical challenge breakdowns",
-        "Integrated AI conversation interface with instant domain answers",
-        "Interactive physics-style tech chips and guide notification bar"
+        "Zero-build vanilla web architecture deploying seamlessly to GitHub Pages",
+        "GitHub Dark / VS Code editorial aesthetic with warm terracotta (#D97757) accents",
+        "Interactive physics tech tags with cursor momentum and hover velocity",
+        "Integrated 'Ask Maaz AI' conversation drawer powered by an in-memory knowledge mesh",
+        "Persistent dark/light theme engine and responsive mobile drawer navigation"
       ],
       challenges: [
-        "Recreating modern Next.js/React design fidelity in clean, framework-free vanilla code",
-        "Maintaining responsive perfection across mobile, tablet, and ultra-wide screens",
-        "Balancing rich interactive elements with lightning-fast load times"
+        "Achieving modern React/Next.js visual polish and interactivity without framework overhead",
+        "Maintaining responsive perfection from mobile screens to 4K displays",
+        "Designing an AI assistant with zero server cost and instantaneous response latency"
       ],
       solutions: [
-        "Organized CSS with modular custom property tokens and fluid clamp() typography",
-        "Implemented GPU-accelerated transforms for jitter-free micro-interactions",
-        "Constructed an in-memory knowledge graph for zero-latency AI responses"
+        "Leveraged modern CSS custom properties, clamp() typography, and hardware-accelerated transforms",
+        "Built an in-memory keyword-scored knowledge mesh responding in < 400ms without backend cold starts",
+        "Automated continuous deployment via GitHub Pages on git push"
       ],
       github: "https://github.com/Maazkhan96271/maazkhan-ai-portfolio",
-      live: "https://maazkhan96271.github.io/maazkhan-ai-portfolio/"
+      live: "https://maazkhan96271.github.io/maazkhan-ai-portfolio/",
+      liveText: "Launch Live Portfolio ↗",
+      embedUrl: null
     }
   };
 
@@ -185,11 +220,17 @@
   const modalTitle = document.getElementById("archModalTitle");
   const modalTags = document.getElementById("archModalTags");
   const modalLive = document.getElementById("archModalLive");
+  const modalLiveText = document.getElementById("archModalLiveText");
   const modalGithub = document.getElementById("archModalGithub");
   const modalOverview = document.getElementById("archModalOverview");
   const modalFeatures = document.getElementById("archModalFeatures");
   const modalChallenges = document.getElementById("archModalChallenges");
   const modalSolutions = document.getElementById("archModalSolutions");
+
+  const liveFrameWrap = document.getElementById("archLiveFrameWrap");
+  const liveFrameUrl = document.getElementById("archFrameUrl");
+  const liveFrameExternal = document.getElementById("archFrameExternal");
+  const liveIframe = document.getElementById("archLiveIframe");
 
   function openArchModal(id) {
     const data = PROJECTS_ARCH[id];
@@ -204,6 +245,9 @@
     if (data.live) {
       modalLive.href = data.live;
       modalLive.style.display = "inline-flex";
+      if (modalLiveText) {
+        modalLiveText.textContent = data.liveText || "Launch Live App ↗";
+      }
     } else {
       modalLive.style.display = "none";
     }
@@ -213,6 +257,19 @@
       modalGithub.style.display = "inline-flex";
     } else {
       modalGithub.style.display = "none";
+    }
+
+    // Embedded live iframe if supported
+    if (liveFrameWrap && liveIframe) {
+      if (data.embedUrl) {
+        liveFrameWrap.style.display = "block";
+        liveIframe.src = data.embedUrl;
+        if (liveFrameUrl) liveFrameUrl.textContent = data.embedUrl;
+        if (liveFrameExternal) liveFrameExternal.href = data.embedUrl;
+      } else {
+        liveFrameWrap.style.display = "none";
+        liveIframe.src = "about:blank";
+      }
     }
 
     modalOverview.textContent = data.fullDescription || data.shortDescription;
@@ -235,6 +292,7 @@
 
   function closeArchModal() {
     if (!modalBackdrop) return;
+    if (liveIframe) liveIframe.src = "about:blank";
     modalBackdrop.classList.remove("open");
     document.body.classList.remove("locked");
   }
@@ -303,24 +361,24 @@
   // Knowledge base for Maaz's AI responses
   const AI_KNOWLEDGE = [
     {
-      keywords: ["project", "built", "work", "portfolio"],
-      answer: "Maaz has built 4 key applications:\n1. **Prompt Playground** — Side-by-side LLM experimentation sandbox with latency & token metrics.\n2. **StudyMate AI** — Lecture note summarizer and active-recall flashcard generator using NLP.\n3. **DSA Drill** — Modern C++20 terminal spaced repetition tool for algorithmic interview patterns.\n4. **AI-Native Portfolio** — The fast, responsive portfolio you're exploring right now!"
+      keywords: ["project", "built", "work", "portfolio", "app", "scamshield", "hospital", "recon"],
+      answer: "Maaz has built 5 production and open-source applications (all live or accessible on GitHub):\n\n1. **ScamShield** (Next.js 16 · React 19 · PWA)\n• AI scam risk analyzer merging deterministic heuristics with LLM inference\n• Client-side AES-256-GCM encrypted scan history in IndexedDB\n• **Live App**: https://scamshield-jet.vercel.app\n• **GitHub**: https://github.com/Maazkhan96271/scamshield\n\n2. **Hospital Management System (HMS)**\n• Full-stack healthcare platform in Python/Flask, SQLite, FastAPI, Next.js\n• 3 role-based portals (Admin, Doctor, Patient) with conflict-free booking\n• **Live App**: https://hospital-management-system-spammer.vercel.app\n• **GitHub**: https://github.com/Maazkhan96271/Hospital-Management-System\n\n3. **Recon-Agent (GST ITC AI Engine)**\n• Autonomous multi-agent tax recovery engine for AWS First Commit 2026\n• Powered by AWS Bedrock, Strands SDK, and DynamoDB\n• **GitHub**: https://github.com/Maazkhan96271/gst-recon-agent\n\n4. **B2B Vendor Compliance Platform**\n• Enterprise onboarding platform from Polaris Semester 1 OJT\n• Centralized risk scoring, document expiry tracking, and state machines\n• **GitHub**: https://github.com/Maazkhan96271/b2b-vendor-onboarding-compliance-ojt-sem1-pst\n\n5. **AI-Native Developer Portfolio**\n• Zero-framework, 100/100 Lighthouse performance portfolio with this AI drawer\n• **Live App**: https://maazkhan96271.github.io/maazkhan-ai-portfolio/\n• **GitHub**: https://github.com/Maazkhan96271/maazkhan-ai-portfolio"
     },
     {
       keywords: ["who", "about", "student", "polaris", "maaz"],
-      answer: "Maaz Khan is an **Applied AI student** at Polaris School of Technology in Bengaluru, India. He builds AI-native web experiences, C++ systems, and modern React applications with a mission to become a top Software Engineer by **2030**."
+      answer: "Maaz Khan is an **Applied AI student** at Polaris School of Technology in Bengaluru, India. He builds production AI-assisted web platforms (Next.js, React, Flask, FastAPI), C++ systems, and enterprise compliance tools with a clear mission to become a world-class Software Engineer by **2030**."
     },
     {
-      keywords: ["skill", "tech", "stack", "language", "python", "c++", "react"],
-      answer: "Maaz's core stack includes:\n• **Languages**: Python, C++, JavaScript (ES6+), Java, TypeScript, SQL\n• **Frontend**: React, Next.js, Tailwind CSS, Canvas API, Vite\n• **AI & Backend**: LLM APIs, LangChain, Prompt Engineering, FastAPI, Flask, Node.js\n• **Tools**: Git, Docker, Linux, Postman, VS Code"
+      keywords: ["skill", "tech", "stack", "language", "python", "c++", "react", "nextjs", "tools"],
+      answer: "Maaz's core technical stack includes:\n• **Languages**: Python, TypeScript, JavaScript (ES6+), C++20, SQL\n• **Frontend & Frameworks**: Next.js 16, React 19, Tailwind CSS v4, Bootstrap 5, PWA\n• **Backend & AI**: Flask, FastAPI, AWS Bedrock, Strands SDK, SQLAlchemy, SQLite, Node.js\n• **Tools & Systems**: Git, Docker, Linux, DynamoDB, IndexedDB (AES-256-GCM), VS Code"
     },
     {
-      keywords: ["contact", "hire", "email", "internship", "reach", "message", "discord"],
-      answer: "You can reach Maaz directly at:\n• **Email**: maazkhan96271@gmail.com\n• **LinkedIn**: linkedin.com/in/maaz-khan-9124232bb/\n• **Discord**: @maazkhan-26796\n• **GitHub**: github.com/Maazkhan96271\nHe is open for software engineering internships and collaborations!"
+      keywords: ["contact", "hire", "email", "internship", "reach", "message", "discord", "linkedin"],
+      answer: "You can connect with Maaz directly:\n• **Email**: maazkhan96271@gmail.com\n• **LinkedIn**: linkedin.com/in/maaz-khan-9124232bb/\n• **GitHub**: github.com/Maazkhan96271\n• **Discord**: @maazkhan-26796\nHe is actively open for Software Engineering internships and technical collaborations!"
     },
     {
       keywords: ["goal", "2030", "career", "future"],
-      answer: "Maaz's primary goal is to become an exceptional Software Engineer by **2030**, working on high-impact systems, distributed architectures, and AI-native products with teams that ship fast and care about engineering craft."
+      answer: "Maaz's primary milestone is to excel as a top-tier Software Engineer by **2030**, engineering high-scale distributed architectures, resilient full-stack systems, and cutting-edge applied AI products."
     }
   ];
 
