@@ -1,18 +1,18 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { portfolioData } from "@/data/portfolioData";
-import { ExternalLink, Github, Sparkles, Terminal, Shield, Cpu, Activity, Award } from "lucide-react";
+import { IDCard3D } from "@/components/IDCard3D";
+import { ExternalLink, Github, Sparkles } from "lucide-react";
 
 export default function Home() {
   const { persona, stats, projects, credentials, forge } = portfolioData;
 
   return (
-    <main className="relative min-h-screen px-6 py-12 md:py-20 max-w-7xl mx-auto space-y-28">
+    <main className="relative min-h-screen px-6 py-8 md:py-16 max-w-7xl mx-auto space-y-28">
 
-      {/* ═══ 1. Hero Section ═══ */}
-      <section className="relative flex flex-col-reverse lg:flex-row items-center justify-between gap-12 pt-6">
-        {/* Left Column: Intro */}
+      {/* ═══ 1. Hero Section & Interactive 3D ID Card ═══ */}
+      <section className="relative flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 pt-4 md:pt-10 pb-8">
+        {/* Left Column: Massive Bold Highly Tracked Typography */}
         <div className="flex-1 space-y-6 text-center lg:text-left">
           {/* Live Status Pill */}
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-mono text-xs font-semibold shadow-[0_0_15px_rgba(16,185,129,0.15)]">
@@ -23,27 +23,31 @@ export default function Home() {
             <span>{persona.liveStatus}</span>
           </div>
 
-          {/* Tagline */}
-          <p className="font-mono text-sm tracking-widest text-cyan-400 uppercase font-semibold">
-            {persona.tagline}
-          </p>
+          {/* Massive, bold, highly tracked typography: "MAAZ KHAN" */}
+          <div className="space-y-3">
+            <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-[0.08em] sm:tracking-[0.14em] text-white uppercase leading-[0.95] select-none">
+              <span className="bg-gradient-to-r from-white via-slate-100 to-cyan-400 bg-clip-text text-transparent">
+                MAAZ KHAN
+              </span>
+            </h1>
 
-          {/* Name & Headline */}
-          <h1 className="font-display text-4xl sm:text-64 md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
-            Hi, I&apos;m <span className="bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent">{persona.name}</span>
-          </h1>
+            {/* Smaller bold text: "FULL-STACK · AI · DEVELOPER" */}
+            <p className="font-mono text-xs sm:text-sm md:text-base font-bold tracking-[0.25em] sm:tracking-[0.3em] text-cyan-400 uppercase">
+              {persona.tagline}
+            </p>
+          </div>
 
-          {/* Bio */}
-          <p className="text-lg text-slate-300 max-w-2xl font-sans leading-relaxed">
+          {/* Underneath, render bio from portfolioData.ts */}
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl font-sans leading-relaxed">
             {persona.bio}
           </p>
 
-          <p className="text-sm font-mono text-slate-400">
-            Admitted in <strong className="text-cyan-400 font-semibold">{persona.admissionYear}</strong> at {persona.college} ({persona.classBatch}) · Focused on becoming a top <strong className="text-white font-semibold">{persona.careerGoal}</strong>.
+          <p className="text-xs sm:text-sm font-mono text-slate-400">
+            Admitted in <strong className="text-cyan-400 font-semibold">{persona.admissionYear}</strong> at {persona.college} ({persona.classBatch}) · Aiming for elite <strong className="text-white font-semibold">{persona.careerGoal}</strong>.
           </p>
 
           {/* Action CTAs */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
             <Link
               href="#projects"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cyan-400 text-black font-display text-sm font-bold shadow-[0_0_25px_rgba(0,240,255,0.3)] transition-all hover:bg-cyan-300 hover:scale-105"
@@ -72,35 +76,9 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Right Column: Avatar with Concentric Rotating Ring */}
-        <div className="relative flex items-center justify-center">
-          <div className="relative h-72 w-72 sm:h-80 sm:w-80 md:h-96 md:w-96">
-            {/* Ambient Cyan Glow */}
-            <div className="absolute inset-0 rounded-full bg-cyan-500/20 blur-3xl" aria-hidden="true" />
-
-            {/* Concentric Dashed Orbital Ring */}
-            <div className="absolute -inset-3 rounded-full border border-dashed border-cyan-400/40 animate-spin-slow" aria-hidden="true" />
-
-            {/* Single Face-Focused Round Avatar Frame */}
-            <div className="relative h-full w-full rounded-full overflow-hidden border-2 border-cyan-400/60 shadow-[0_0_40px_rgba(0,240,255,0.25)] bg-[#090d14]">
-              <Image
-                src={persona.avatarUrl}
-                alt={`${persona.name} portrait`}
-                fill
-                priority
-                className="object-cover object-top transition-transform duration-500 hover:scale-105"
-                sizes="(max-width: 768px) 288px, 384px"
-              />
-            </div>
-
-            {/* Telemetry Chips */}
-            <div className="absolute -top-3 -left-4 px-3.5 py-1.5 rounded-full bg-[#090d14]/90 border border-white/10 backdrop-blur-md font-mono text-xs text-cyan-400 shadow-xl">
-              Polaris &apos;26 Batch
-            </div>
-            <div className="absolute -bottom-3 -right-3 px-3.5 py-1.5 rounded-full bg-[#090d14]/90 border border-white/10 backdrop-blur-md font-mono text-xs text-emerald-400 shadow-xl">
-              Target: SWE 2030
-            </div>
-          </div>
+        {/* Right Column (or below on mobile): Interactive 3D ID Card using Framer Motion */}
+        <div className="flex justify-center items-center pt-4 lg:pt-0">
+          <IDCard3D name={persona.name} avatarUrl={persona.avatarUrl} />
         </div>
       </section>
 
