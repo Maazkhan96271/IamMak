@@ -1,15 +1,16 @@
 /* ============================================================
-   Maaz Khan — Portfolio Logic (Aditya Pillai Architecture)
+   Maaz Khan — Portfolio Scripts
+   Interactive UI, Project Modals, Floating Guide Bar, AI Assistant
    ============================================================ */
 
 (() => {
   "use strict";
 
-  /* ---------- 1. Projects Data (Architecture & Modals) ---------- */
-  const PROJECTS_DATA = {
+  /* ---------- 1. Projects Architecture Data ---------- */
+  const PROJECTS_ARCH = {
     "prompt-playground": {
       title: "Prompt Playground",
-      shortDescription: "High-performance LLM prompt experimentation sandbox for evaluating completions side-by-side with latency benchmarking and variant scoring.",
+      shortDescription: "High-performance LLM experimentation sandbox for evaluating model completions side-by-side with latency benchmarking and variant scoring.",
       fullDescription: "Prompt Playground is an AI developer workspace designed to streamline prompt engineering workflows. Developers can run concurrent model inferences across different parameter configurations (temperature, top-p, system instructions), compare multi-turn completions side-by-side, benchmark latency and token consumption, and export the best-performing prompts directly into production code.",
       tags: ["React", "TypeScript", "LLM APIs", "FastAPI", "TailwindCSS"],
       features: [
@@ -30,14 +31,13 @@
         "Integrated lightweight client-side BPE tokenizer approximations for instant metrics"
       ],
       github: "https://github.com/Maazkhan96271",
-      live: "https://maazkhan96271.github.io/maazkhan-ai-portfolio/#projects",
-      featured: true
+      live: "https://maazkhan96271.github.io/maazkhan-ai-portfolio/#projects"
     },
     "studymate-ai": {
       title: "StudyMate AI",
       shortDescription: "Intelligent study companion that transforms unstructured lecture notes and PDFs into structured summaries, active-recall flashcards, and practice exams.",
       fullDescription: "StudyMate AI is an educational productivity platform built for university students. Leveraging NLP and generative AI, it digests complex course material, extracts foundational concepts, and dynamically generates spaced-repetition flashcards and adaptive mock quizzes to reinforce long-term concept retention.",
-      tags: ["Python", "Flask", "LangChain", "React", "NLP", "TailwindCSS"],
+      tags: ["Python", "Flask", "LangChain", "React", "NLP"],
       features: [
         "Multimodal document ingestion supporting raw text, Markdown, and PDF lecture slides",
         "Recursive hierarchical summarization for long-context lecture transcripts",
@@ -56,8 +56,7 @@
         "Implemented background chunk processing with incremental streaming feedback"
       ],
       github: "https://github.com/Maazkhan96271",
-      live: "https://maazkhan96271.github.io/maazkhan-ai-portfolio/#projects",
-      featured: true
+      live: "https://maazkhan96271.github.io/maazkhan-ai-portfolio/#projects"
     },
     "dsa-drill": {
       title: "DSA Drill",
@@ -82,208 +81,81 @@
         "Serialized flashcard mastery data into lightweight binary storage for sub-millisecond startup"
       ],
       github: "https://github.com/Maazkhan96271",
-      live: "https://github.com/Maazkhan96271",
-      featured: true
+      live: "https://github.com/Maazkhan96271"
     },
     "ai-portfolio": {
       title: "AI-Native Portfolio",
-      shortDescription: "High-performance developer portfolio featuring interactive particle physics, dark/light ambient themes, full project architecture modals, and built-in AI assistant.",
-      fullDescription: "Designed and engineered as a showcase of modern web architecture and UI/UX design. Built from the ground up without heavy frameworks to achieve near-instant initial render times, smooth 60fps animations, interactive constellation particles, keyboard accessibility, and an intelligent interactive assistant.",
-      tags: ["JavaScript", "HTML5", "CSS3", "Canvas API", "LLM Integration"],
+      shortDescription: "High-performance developer portfolio featuring interactive physics chips, dark/light themes, project architecture modals, and built-in AI assistant.",
+      fullDescription: "Designed and engineered as a showcase of modern web architecture and UI/UX design. Built from the ground up without heavy frameworks to achieve near-instant initial render times, smooth 60fps animations, keyboard accessibility, and an intelligent interactive assistant.",
+      tags: ["JavaScript", "HTML5", "CSS3", "Design Systems", "AI Assistant"],
       features: [
-        "Interactive constellation canvas with collision physics and distance-based link rendering",
+        "Two-column editorial hero layout with profile glow ring and telemetry badges",
         "Adaptive dark/light theme engine persisted across visits",
-        "Deep architecture project modals with tabbed challenge/solution breakdowns",
-        "Live AI conversation interface with streaming responses",
-        "Command palette (⌘K) for rapid keyboard-driven navigation"
+        "Deep architecture project modals with technical challenge breakdowns",
+        "Integrated AI conversation interface with instant domain answers",
+        "Interactive physics-style tech chips and guide notification bar"
       ],
       challenges: [
-        "Rendering smooth particle networks on high-DPI displays without GPU throttling",
-        "Recreating sophisticated React-style micro-interactions in pure vanilla JavaScript",
-        "Managing responsive layout shifts across mobile, tablet, and widescreen displays"
+        "Recreating modern Next.js/React design fidelity in clean, framework-free vanilla code",
+        "Maintaining responsive perfection across mobile, tablet, and ultra-wide screens",
+        "Balancing rich interactive elements with lightning-fast load times"
       ],
       solutions: [
-        "Implemented requestAnimationFrame loop with device pixel ratio scaling and particle culling",
-        "Used CSS custom properties and hardware-accelerated transforms for fluid 60fps rendering",
-        "Applied strict mobile-first design tokens with fluid typography and clamp() scaling"
+        "Organized CSS with modular custom property tokens and fluid clamp() typography",
+        "Implemented GPU-accelerated transforms for jitter-free micro-interactions",
+        "Constructed an in-memory knowledge graph for zero-latency AI responses"
       ],
       github: "https://github.com/Maazkhan96271/maazkhan-ai-portfolio",
-      live: "https://maazkhan96271.github.io/maazkhan-ai-portfolio/",
-      featured: false
+      live: "https://maazkhan96271.github.io/maazkhan-ai-portfolio/"
     }
   };
 
-  /* ---------- 2. Intro Loader ---------- */
-  const loader = document.getElementById("introLoader");
-  if (loader) {
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        loader.classList.add("done");
-      }, 1400);
-    });
-    // Fallback timer if load event already triggered
-    setTimeout(() => {
-      if (!loader.classList.contains("done")) {
-        loader.classList.add("done");
-      }
-    }, 2200);
-  }
-
-  /* ---------- 3. Theme Toggle Engine ---------- */
+  /* ---------- 2. Theme Engine ---------- */
   const root = document.documentElement;
   const themeToggle = document.getElementById("themeToggle");
   const storedTheme = localStorage.getItem("mk_theme") || "dark";
   root.setAttribute("data-theme", storedTheme);
 
-  function setTheme(theme) {
-    root.setAttribute("data-theme", theme);
-    localStorage.setItem("mk_theme", theme);
-  }
-
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
       const current = root.getAttribute("data-theme") || "dark";
       const next = current === "dark" ? "light" : "dark";
-      setTheme(next);
-      showToast(next === "dark" ? "Dark mode enabled" : "Light mode enabled");
+      root.setAttribute("data-theme", next);
+      localStorage.setItem("mk_theme", next);
+      showToast(next === "dark" ? "Dark mode on" : "Light mode on");
     });
   }
 
-  /* ---------- 4. Interactive Constellation Canvas ---------- */
-  const canvas = document.getElementById("particlesCanvas");
-  if (canvas) {
-    const ctx = canvas.getContext("2d");
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    let mouse = { x: null, y: null, radius: 140 };
-
-    window.addEventListener("resize", () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
-
-    window.addEventListener("mousemove", (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-
-    window.addEventListener("mouseleave", () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
-
-    const PARTICLE_COUNT = Math.min(80, Math.floor((width * height) / 14000));
-    const particles = [];
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 1.8 + 1.2;
-        this.vx = (Math.random() - 0.5) * 0.9;
-        this.vy = (Math.random() - 0.5) * 0.9;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-
-        // Mouse interaction
-        if (mouse.x !== null && mouse.y !== null) {
-          const dx = mouse.x - this.x;
-          const dy = mouse.y - this.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < mouse.radius) {
-            const force = (mouse.radius - dist) / mouse.radius;
-            this.x -= (dx / dist) * force * 1.5;
-            this.y -= (dy / dist) * force * 1.5;
-          }
-        }
-      }
-      draw(color) {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = color;
-        ctx.fill();
-      }
-    }
-
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particles.push(new Particle());
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-
-      const isDark = root.getAttribute("data-theme") !== "light";
-      const dotColor = isDark ? "rgba(184, 242, 230, 0.65)" : "rgba(94, 100, 114, 0.65)";
-      const linkColorRgb = isDark ? "184, 242, 230" : "94, 100, 114";
-
-      // Draw connections
-      const maxDistance = 150;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.hypot(dx, dy);
-
-          if (dist < maxDistance) {
-            const alpha = (1 - dist / maxDistance) * (isDark ? 0.22 : 0.15);
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(${linkColorRgb}, ${alpha})`;
-            ctx.lineWidth = 0.85;
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw particles
-      particles.forEach((p) => {
-        p.update();
-        p.draw(dotColor);
-      });
-
-      requestAnimationFrame(animate);
-    }
-    requestAnimationFrame(animate);
-  }
-
-  /* ---------- 5. Navbar Sticky & ScrollSpy ---------- */
-  const navbar = document.getElementById("navbar");
-  const navLinks = document.querySelectorAll(".nav-link");
+  /* ---------- 3. Sticky Navigation & ScrollSpy ---------- */
+  const headerNav = document.getElementById("headerNav");
+  const navItems = document.querySelectorAll(".nav-item");
   const sections = document.querySelectorAll("section[id]");
 
   window.addEventListener("scroll", () => {
     const y = window.scrollY;
-    if (navbar) {
-      navbar.classList.toggle("stuck", y > 24);
+    if (headerNav) {
+      headerNav.classList.toggle("stuck", y > 30);
     }
 
-    // Active link highlighting
     let current = "";
     sections.forEach((sec) => {
-      const top = sec.offsetTop - 120;
+      const top = sec.offsetTop - 140;
       if (y >= top) {
         current = sec.getAttribute("id");
       }
     });
 
-    navLinks.forEach((link) => {
-      link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+    navItems.forEach((item) => {
+      item.classList.toggle("active", item.getAttribute("href") === `#${current}`);
     });
   }, { passive: true });
 
-  // Mobile Menu Drawer
-  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  // Mobile menu drawer
+  const mobileToggle = document.getElementById("mobileToggle");
   const mobileDrawer = document.getElementById("mobileDrawer");
 
-  if (mobileMenuBtn && mobileDrawer) {
-    mobileMenuBtn.addEventListener("click", () => {
+  if (mobileToggle && mobileDrawer) {
+    mobileToggle.addEventListener("click", () => {
       mobileDrawer.classList.toggle("open");
     });
 
@@ -294,173 +166,281 @@
     });
   }
 
-  /* ---------- 6. Project Modal System ---------- */
-  const modalOverlay = document.getElementById("projectModal");
-  const modalCloseBtn = document.getElementById("modalCloseBtn");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalTags = document.getElementById("modalTags");
-  const modalLive = document.getElementById("modalLive");
-  const modalGithub = document.getElementById("modalGithub");
-  const modalDesc = document.getElementById("modalDesc");
-  const modalFeatures = document.getElementById("modalFeatures");
-  const modalChallenges = document.getElementById("modalChallenges");
-  const modalSolutions = document.getElementById("modalSolutions");
+  /* ---------- 4. Interactive Tech Chips (Gaurav style) ---------- */
+  document.querySelectorAll(".interactive-chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      chip.style.transform = "scale(0.92) rotate(-3deg)";
+      setTimeout(() => {
+        chip.style.transform = "scale(1.08) rotate(3deg)";
+      }, 100);
+      setTimeout(() => {
+        chip.style.transform = "";
+      }, 250);
+    });
+  });
 
-  function openProjectModal(projectId) {
-    const p = PROJECTS_DATA[projectId];
-    if (!p || !modalOverlay) return;
+  /* ---------- 5. Project Architecture Modal ---------- */
+  const modalBackdrop = document.getElementById("archModalBackdrop");
+  const modalClose = document.getElementById("archModalClose");
+  const modalTitle = document.getElementById("archModalTitle");
+  const modalTags = document.getElementById("archModalTags");
+  const modalLive = document.getElementById("archModalLive");
+  const modalGithub = document.getElementById("archModalGithub");
+  const modalOverview = document.getElementById("archModalOverview");
+  const modalFeatures = document.getElementById("archModalFeatures");
+  const modalChallenges = document.getElementById("archModalChallenges");
+  const modalSolutions = document.getElementById("archModalSolutions");
 
-    modalTitle.textContent = p.title;
+  function openArchModal(id) {
+    const data = PROJECTS_ARCH[id];
+    if (!data || !modalBackdrop) return;
 
-    // Tags
-    modalTags.innerHTML = p.tags
-      .map((t) => `<span class="project-tag">${t}</span>`)
+    modalTitle.textContent = data.title;
+
+    modalTags.innerHTML = data.tags
+      .map((t) => `<span class="syntax-tag">${t}</span>`)
       .join("");
 
-    // Links
-    if (p.live) {
-      modalLive.href = p.live;
+    if (data.live) {
+      modalLive.href = data.live;
       modalLive.style.display = "inline-flex";
     } else {
       modalLive.style.display = "none";
     }
 
-    if (p.github) {
-      modalGithub.href = p.github;
+    if (data.github) {
+      modalGithub.href = data.github;
       modalGithub.style.display = "inline-flex";
     } else {
       modalGithub.style.display = "none";
     }
 
-    // Overview
-    modalDesc.textContent = p.fullDescription || p.shortDescription;
+    modalOverview.textContent = data.fullDescription || data.shortDescription;
 
-    // Features
-    modalFeatures.innerHTML = p.features
+    modalFeatures.innerHTML = data.features
       .map((f) => `<li>${f}</li>`)
       .join("");
 
-    // Challenges
-    modalChallenges.innerHTML = p.challenges
+    modalChallenges.innerHTML = data.challenges
       .map((c) => `<li>${c}</li>`)
       .join("");
 
-    // Solutions
-    modalSolutions.innerHTML = p.solutions
+    modalSolutions.innerHTML = data.solutions
       .map((s) => `<li>${s}</li>`)
       .join("");
 
-    modalOverlay.classList.add("open");
+    modalBackdrop.classList.add("open");
     document.body.classList.add("locked");
   }
 
-  function closeProjectModal() {
-    if (!modalOverlay) return;
-    modalOverlay.classList.remove("open");
+  function closeArchModal() {
+    if (!modalBackdrop) return;
+    modalBackdrop.classList.remove("open");
     document.body.classList.remove("locked");
   }
 
-  document.querySelectorAll("[data-project-id]").forEach((card) => {
-    card.addEventListener("click", (e) => {
-      // Don't trigger modal if user clicks direct external link
-      if (e.target.closest("a")) return;
-      const id = card.getAttribute("data-project-id");
-      openProjectModal(id);
+  document.querySelectorAll("[data-open-arch]").forEach((trigger) => {
+    trigger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const id = trigger.getAttribute("data-open-arch");
+      openArchModal(id);
     });
   });
 
-  if (modalCloseBtn) {
-    modalCloseBtn.addEventListener("click", closeProjectModal);
-  }
+  if (modalClose) modalClose.addEventListener("click", closeArchModal);
 
-  if (modalOverlay) {
-    modalOverlay.addEventListener("click", (e) => {
-      if (e.target === modalOverlay) {
-        closeProjectModal();
-      }
+  if (modalBackdrop) {
+    modalBackdrop.addEventListener("click", (e) => {
+      if (e.target === modalBackdrop) closeArchModal();
     });
   }
 
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modalOverlay && modalOverlay.classList.contains("open")) {
-      closeProjectModal();
+    if (e.key === "Escape") {
+      closeArchModal();
+      closeAiChat();
     }
   });
 
-  /* ---------- 7. Contact Form Handling ---------- */
-  const contactForm = document.getElementById("contactForm");
-  const submitBtn = document.getElementById("contactSubmitBtn");
+  /* ---------- 6. Floating Guide Bar (Bottom Notification) ---------- */
+  const guideBar = document.getElementById("floatingGuideBar");
+  const guideClose = document.getElementById("guideCloseBtn");
 
-  function validateEmail(email) {
+  if (guideClose && guideBar) {
+    guideClose.addEventListener("click", () => {
+      guideBar.classList.add("dismissed");
+    });
+  }
+
+  /* ---------- 7. AI Assistant ("Ask Maaz AI") ---------- */
+  const aiChatBackdrop = document.getElementById("aiChatBackdrop");
+  const aiChatDrawer = document.getElementById("aiChatDrawer");
+  const closeChatBtn = document.getElementById("closeChatBtn");
+  const chatForm = document.getElementById("chatForm");
+  const chatInput = document.getElementById("chatInput");
+  const chatLog = document.getElementById("chatLog");
+
+  function openAiChat() {
+    if (!aiChatDrawer) return;
+    aiChatDrawer.classList.add("open");
+    if (aiChatBackdrop) aiChatBackdrop.classList.add("open");
+    if (chatInput) chatInput.focus();
+  }
+
+  function closeAiChat() {
+    if (!aiChatDrawer) return;
+    aiChatDrawer.classList.remove("open");
+    if (aiChatBackdrop) aiChatBackdrop.classList.remove("open");
+  }
+
+  document.querySelectorAll("[data-open-ai]").forEach((btn) => {
+    btn.addEventListener("click", openAiChat);
+  });
+
+  if (closeChatBtn) closeChatBtn.addEventListener("click", closeAiChat);
+  if (aiChatBackdrop) aiChatBackdrop.addEventListener("click", closeAiChat);
+
+  // Knowledge base for Maaz's AI responses
+  const AI_KNOWLEDGE = [
+    {
+      keywords: ["project", "built", "work", "portfolio"],
+      answer: "Maaz has built 4 key applications:\n1. **Prompt Playground** — Side-by-side LLM experimentation sandbox with latency & token metrics.\n2. **StudyMate AI** — Lecture note summarizer and active-recall flashcard generator using NLP.\n3. **DSA Drill** — Modern C++20 terminal spaced repetition tool for algorithmic interview patterns.\n4. **AI-Native Portfolio** — The fast, responsive portfolio you're exploring right now!"
+    },
+    {
+      keywords: ["who", "about", "student", "polaris", "maaz"],
+      answer: "Maaz Khan is an **Applied AI student** at Polaris School of Technology in Bengaluru, India. He builds AI-native web experiences, C++ systems, and modern React applications with a mission to become a top Software Engineer by **2030**."
+    },
+    {
+      keywords: ["skill", "tech", "stack", "language", "python", "c++", "react"],
+      answer: "Maaz's core stack includes:\n• **Languages**: Python, C++, JavaScript (ES6+), Java, TypeScript, SQL\n• **Frontend**: React, Next.js, Tailwind CSS, Canvas API, Vite\n• **AI & Backend**: LLM APIs, LangChain, Prompt Engineering, FastAPI, Flask, Node.js\n• **Tools**: Git, Docker, Linux, Postman, VS Code"
+    },
+    {
+      keywords: ["contact", "hire", "email", "internship", "reach", "message", "discord"],
+      answer: "You can reach Maaz directly at:\n• **Email**: maazkhan96271@gmail.com\n• **LinkedIn**: linkedin.com/in/maaz-khan-9124232bb/\n• **Discord**: @maazkhan-26796\n• **GitHub**: github.com/Maazkhan96271\nHe is open for software engineering internships and collaborations!"
+    },
+    {
+      keywords: ["goal", "2030", "career", "future"],
+      answer: "Maaz's primary goal is to become an exceptional Software Engineer by **2030**, working on high-impact systems, distributed architectures, and AI-native products with teams that ship fast and care about engineering craft."
+    }
+  ];
+
+  function getAiResponse(query) {
+    const q = query.toLowerCase();
+    for (const item of AI_KNOWLEDGE) {
+      if (item.keywords.some((k) => q.includes(k))) {
+        return item.answer;
+      }
+    }
+    return `Maaz is an Applied AI student at Polaris School of Technology building AI-assisted web apps and C++ systems. Feel free to ask about his **projects**, **skills**, **education**, or **how to contact him**!`;
+  }
+
+  function appendChatMessage(text, sender) {
+    if (!chatLog) return;
+    const msg = document.createElement("div");
+    msg.className = `chat-msg ${sender}`;
+    msg.innerHTML = text.replace(/\n/g, "<br>");
+    chatLog.appendChild(msg);
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+
+  if (chatForm && chatInput) {
+    chatForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const val = chatInput.value.trim();
+      if (!val) return;
+
+      appendChatMessage(val, "user");
+      chatInput.value = "";
+
+      // Typing simulation
+      setTimeout(() => {
+        const reply = getAiResponse(val);
+        appendChatMessage(reply, "bot");
+      }, 450);
+    });
+  }
+
+  // Quick suggestion buttons
+  document.querySelectorAll(".suggestion-pill-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const text = btn.textContent.trim();
+      appendChatMessage(text, "user");
+      setTimeout(() => {
+        const reply = getAiResponse(text);
+        appendChatMessage(reply, "bot");
+      }, 450);
+    });
+  });
+
+  /* ---------- 8. Contact Form Validation & Submission ---------- */
+  const contactForm = document.getElementById("contactForm");
+  const sendBtn = document.getElementById("contactSendBtn");
+
+  function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
-  if (contactForm && submitBtn) {
+  if (contactForm && sendBtn) {
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const nameInput = document.getElementById("contactName");
-      const emailInput = document.getElementById("contactEmail");
-      const messageInput = document.getElementById("contactMessage");
+      const name = document.getElementById("formName");
+      const email = document.getElementById("formEmail");
+      const message = document.getElementById("formMessage");
 
-      const nameErr = document.getElementById("nameError");
-      const emailErr = document.getElementById("emailError");
-      const messageErr = document.getElementById("messageError");
+      const errName = document.getElementById("errName");
+      const errEmail = document.getElementById("errEmail");
+      const errMessage = document.getElementById("errMessage");
 
       let valid = true;
 
-      // Name validation
-      if (!nameInput.value.trim()) {
-        nameErr.classList.add("visible");
+      if (!name.value.trim()) {
+        errName.classList.add("show");
         valid = false;
       } else {
-        nameErr.classList.remove("visible");
+        errName.classList.remove("show");
       }
 
-      // Email validation
-      if (!validateEmail(emailInput.value.trim())) {
-        emailErr.classList.add("visible");
+      if (!isValidEmail(email.value.trim())) {
+        errEmail.classList.add("show");
         valid = false;
       } else {
-        emailErr.classList.remove("visible");
+        errEmail.classList.remove("show");
       }
 
-      // Message validation
-      if (!messageInput.value.trim()) {
-        messageErr.classList.add("visible");
+      if (!message.value.trim()) {
+        errMessage.classList.add("show");
         valid = false;
       } else {
-        messageErr.classList.remove("visible");
+        errMessage.classList.remove("show");
       }
 
       if (!valid) return;
 
-      // Submit state
-      submitBtn.classList.add("loading");
-      submitBtn.disabled = true;
+      sendBtn.classList.add("loading");
+      sendBtn.disabled = true;
 
       setTimeout(() => {
-        submitBtn.classList.remove("loading");
-        submitBtn.disabled = false;
+        sendBtn.classList.remove("loading");
+        sendBtn.disabled = false;
         contactForm.reset();
-        showToast("Message sent successfully! I'll get back to you soon.");
-      }, 1200);
+        showToast("Message sent successfully! I'll get back to you shortly.");
+      }, 1000);
     });
   }
 
-  /* ---------- 8. Floating Toast Notification ---------- */
-  const toast = document.getElementById("floatingToast");
-  let toastTimer;
+  /* ---------- 9. Toast Notification ---------- */
+  const toast = document.getElementById("actionToast");
+  let toastTimeout;
 
-  function showToast(message, isError = false) {
+  function showToast(msg) {
     if (!toast) return;
-    toast.textContent = message;
-    toast.classList.toggle("error", isError);
+    toast.textContent = msg;
     toast.classList.add("show");
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
       toast.classList.remove("show");
-    }, 3200);
+    }, 3000);
   }
 
   // Copy buttons
@@ -473,37 +453,7 @@
     });
   });
 
-  // Back to top button
-  const toTopBtn = document.getElementById("toTopBtn");
-  if (toTopBtn) {
-    toTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-
-  // Current Year in footer
-  const yearSpan = document.getElementById("currentYear");
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
-
-  /* ---------- 9. Hero Name Letter By Letter Animation ---------- */
-  const heroNameEl = document.getElementById("heroAnimatedName");
-  if (heroNameEl) {
-    const text = heroNameEl.textContent.trim();
-    heroNameEl.innerHTML = "";
-    text.split("").forEach((char, idx) => {
-      const span = document.createElement("span");
-      span.textContent = char === " " ? "\u00A0" : char;
-      span.style.display = "inline-block";
-      span.style.opacity = "0";
-      span.style.transform = "translateY(16px)";
-      span.style.transition = `opacity 0.4s ease ${0.2 + idx * 0.03}s, transform 0.4s ease ${0.2 + idx * 0.03}s`;
-      heroNameEl.appendChild(span);
-      setTimeout(() => {
-        span.style.opacity = "1";
-        span.style.transform = "none";
-      }, 50);
-    });
-  }
+  // Footer year
+  const yearEl = document.getElementById("footerYear");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();
